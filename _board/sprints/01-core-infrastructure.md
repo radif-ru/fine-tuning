@@ -56,7 +56,7 @@
 
 ### Задача 1.1. Configuration (`app/core/config.py`)
 
-- **Статус:** Progress
+- **Статус:** Done
 - **Приоритет:** critical
 - **Объём:** M
 - **Зависит от:** —
@@ -118,7 +118,7 @@ class Settings(BaseSettings):
 
 ### Задача 1.2. Logging (`app/core/logging_config.py`)
 
-- **Статус:** ToDo
+- **Статус:** Done
 - **Приоритет:** high
 - **Объём:** S
 - **Зависит от:** —
@@ -184,7 +184,7 @@ def setup_logging(
 
 ### Задача 1.3. Exceptions (`app/core/exceptions.py`)
 
-- **Статус:** ToDo
+- **Статус:** Done
 - **Приоритет:** medium
 - **Объём:** XS
 - **Зависит от:** —
@@ -236,7 +236,7 @@ class InferenceError(FineTuningError):
 
 ### Задача 2.1. CLI Skeleton (`app/__main__.py`)
 
-- **Статус:** ToDo
+- **Статус:** Progress
 - **Приоритет:** high
 - **Объём:** M
 - **Зависит от:** Задача 1.1, 1.2
@@ -561,10 +561,10 @@ BF16=true
 
 | #   | Задача                                   | Приоритет | Объём | Статус | Зависит от  |
 |-----|------------------------------------------|:---------:|:-----:|:------:|:-----------:|
-| 1.1 | Configuration (`app/core/config.py`)    | critical  | M     | Progress | —           |
-| 1.2 | Logging (`app/core/logging_config.py`)   | high      | S     | ToDo   | —           |
-| 1.3 | Exceptions (`app/core/exceptions.py`)    | medium    | XS    | ToDo   | —           |
-| 2.1 | CLI Skeleton (`app/__main__.py`)        | high      | M     | ToDo   | 1.1, 1.2    |
+| 1.1 | Configuration (`app/core/config.py`)    | critical  | M     | Done | —           |
+| 1.2 | Logging (`app/core/logging_config.py`)   | high      | S     | Done   | —           |
+| 1.3 | Exceptions (`app/core/exceptions.py`)    | medium    | XS    | Done   | —           |
+| 2.1 | CLI Skeleton (`app/__main__.py`)        | high      | M     | Progress   | 1.1, 1.2    |
 | 3.1 | Device Utils (`app/utils/device.py`)     | medium    | S     | ToDo   | —           |
 | 3.2 | Memory Utils (`app/utils/memory.py`)     | medium    | S     | ToDo   | —           |
 | 4.1 | Test Fixtures (`tests/conftest.py`)      | medium    | S     | ToDo   | 1.1         |
