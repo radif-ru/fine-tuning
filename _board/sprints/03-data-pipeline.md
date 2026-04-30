@@ -192,15 +192,15 @@ class DataPipeline:
 
 ---
 
-## 8. Сводная таблица
+## 8. Сводная таблица задач спринта
 
-| # | Задача | Приоритет | Статус |
-|---|--------|:---------:|:------:|
-| 1.1 | Data Loader | critical | ToDo |
-| 2.1 | Prompt Templates | high | ToDo |
-| 2.2 | Data Formatter | high | ToDo |
-| 3.1 | Tokenizer Wrapper | critical | ToDo |
-| 4.1 | Pipeline Integration | high | ToDo |
+| # | Задача | Приоритет | Объём | Статус | Зависит от |
+|---|--------|:---------:|:-----:|:------:|:----------:|
+| 1.1 | Data Loader | critical | M | ToDo | — |
+| 2.1 | Prompt Templates | high | S | ToDo | — |
+| 2.2 | Data Formatter | high | M | ToDo | 2.1 |
+| 3.1 | Tokenizer Wrapper | critical | M | ToDo | 2.2 |
+| 4.1 | Pipeline Integration | high | S | ToDo | 1.1, 2.2, 3.1 |
 
 ## 9. История
 

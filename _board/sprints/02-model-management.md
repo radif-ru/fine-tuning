@@ -178,14 +178,14 @@ class ModelRegistry:
 
 ---
 
-## 8. Сводная таблица
+## 8. Сводная таблица задач спринта
 
-| # | Задача | Приоритет | Статус |
-|---|--------|:---------:|:------:|
-| 1.1 | Base Model Loader | critical | ToDo |
-| 2.1 | LoRA Config | critical | ToDo |
-| 2.2 | LoRA Manager | critical | ToDo |
-| 3.1 | Model Registry | high | ToDo |
+| # | Задача | Приоритет | Объём | Статус | Зависит от |
+|---|--------|:---------:|:-----:|:------:|:----------:|
+| 1.1 | Base Model Loader | critical | M | ToDo | — |
+| 2.1 | LoRA Config | critical | S | ToDo | — |
+| 2.2 | LoRA Manager | critical | M | ToDo | 1.1, 2.1 |
+| 3.1 | Model Registry | high | S | ToDo | 1.1 |
 
 ## 9. История
 

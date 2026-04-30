@@ -229,15 +229,15 @@ def train_command(args):
 
 ---
 
-## 8. Сводная таблица
+## 8. Сводная таблица задач спринта
 
-| # | Задача | Приоритет | Статус |
-|---|--------|:---------:|:------:|
-| 1.1 | Training Config | critical | ToDo |
-| 2.1 | LoRA Trainer | critical | ToDo |
-| 3.1 | Logging Callback | high | ToDo |
-| 3.2 | WandB Callback | medium | ToDo |
-| 4.1 | Train Command | high | ToDo |
+| # | Задача | Приоритет | Объём | Статус | Зависит от |
+|---|--------|:---------:|:-----:|:------:|:----------:|
+| 1.1 | Training Config | critical | M | ToDo | — |
+| 2.1 | LoRA Trainer | critical | L | ToDo | 1.1 |
+| 3.1 | Logging Callback | high | S | ToDo | 2.1 |
+| 3.2 | WandB Callback | medium | S | ToDo | 2.1 |
+| 4.1 | Train Command | high | M | ToDo | 1.1, 2.1, 3.1 |
 
 ## 9. История
 

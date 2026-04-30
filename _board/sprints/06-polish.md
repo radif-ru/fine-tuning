@@ -270,16 +270,16 @@ python -m app inference --adapter-path outputs/run-001/final --interactive
 
 ---
 
-## 9. Сводная таблица
+## 9. Сводная таблица задач спринта
 
-| # | Задача | Приоритет | Статус |
-|---|--------|:---------:|:------:|
-| 1.1 | Example Datasets | high | ToDo |
-| 2.1 | Example Configs | high | ToDo |
-| 3.1 | Integration Tests | high | ToDo |
-| 4.1 | Test Coverage | high | ToDo |
-| 5.1 | README Update | high | ToDo |
-| 5.2 | Documentation Review | medium | ToDo |
+| # | Задача | Приоритет | Объём | Статус | Зависит от |
+|---|--------|:---------:|:-----:|:------:|:----------:|
+| 1.1 | Example Datasets | high | S | ToDo | — |
+| 2.1 | Example Configs | high | S | ToDo | — |
+| 3.1 | Integration Tests | high | M | ToDo | Спринты 01-05 |
+| 4.1 | Test Coverage | high | M | ToDo | Спринты 01-05 |
+| 5.1 | README Update | high | S | ToDo | Спринты 01-05 |
+| 5.2 | Documentation Review | medium | S | ToDo | Спринты 01-05 |
 
 ## 10. История
 

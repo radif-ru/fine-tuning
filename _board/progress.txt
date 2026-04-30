@@ -1,48 +1,110 @@
-# Progress Notes
+Прогресс проекта fine-tuning
+===========================
 
-## Текущий контекст
+Файл — ad-hoc заметки про текущее состояние работ. Не процесс (он в process.md), не план
+(он в plan.md и в файлах спринтов), не спецификация (она в _docs/). Сюда — то, что не
+ложится в формальные документы, но полезно держать перед глазами.
 
-**Спринт:** 00 Bootstrap (инфраструктурный)
-**Статус:** ✅ ЗАКРЫТ 2026-04-30
-**Дата:** 2026-04-30
+Легенда:
+[+] — выполнено;
+[~] — частично (например, покрыто моком, нужна ручная проверка);
+[ ] — не начато.
 
-## Что сделано в Bootstrap
+Состояние на момент закрытия Спринта 00 (Bootstrap), 2026-04-30
+---------------------------------------------------------------
 
-- [x] Структура каталогов проекта
-- [x] Корневые файлы (.gitignore, README.md, requirements.txt, pyproject.toml)
-- [x] .env.example на русском языке
-- [x] Документация в _docs/ (11 файлов)
-- [x] CLAUDE.md в корне
-- [x] _board/ файлы (README.md, plan.md, process.md, progress.txt)
-- [x] Спринты: 00-bootstrap.md (закрыт), 01-core-infrastructure.md (запланирован)
-- [x] Скелет app/ и tests/
-- [x] Runtime-директории с .gitkeep
-- [x] Все изменения закоммичены (4 коммита)
+[+] Документация _docs/ создана (11 файлов): README, requirements, architecture,
+    configuration, training, inference, testing, instructions, project-structure,
+    roadmap, current-state.
+[+] Доска _board/ создана: README, plan, process, progress.txt (этот файл),
+    sprints/00-bootstrap.md, sprints/01-core-infrastructure.md, sprints/02-model-management.md,
+    sprints/03-data-pipeline.md, sprints/04-training.md, sprints/05-inference.md,
+    sprints/06-polish.md.
+[+] Скелет каталогов: app/ с пустыми __init__.py, tests/ с __init__.py,
+    configs/, data/, logs/, checkpoints/, outputs/ с .gitkeep.
+[+] Корневые файлы: README.md, CLAUDE.md, .gitignore, .env.example,
+    requirements.txt, pyproject.toml.
+[+] Спринт 00 закрыт 2026-04-30 коммитами bootstrap.
 
-## Коммиты Bootstrap
+Чек-лист приёмки MVP (Спринт 01) — заполняется по мере реализации
+-----------------------------------------------------------------
 
-1. `ab680a9` — chore(repo): начальная структура и корневые файлы
-2. `98772fd` — docs: добавить полный набор документации
-3. `2f95c56` — docs(board): добавить доску задач со спринтами
-4. `530c0bd` — chore(repo): добавить скелет каталогов для кода и тестов
+[ ] 1. Конфигурация: `python -c "from app.core.config import Settings; print(Settings().log_level)"` работает.
+       Покрыто тестами tests/unit/core/test_config.py.
 
-## План спринтов (все созданы)
+[ ] 2. Логирование: RotatingFileHandler создаёт файл и каталог, пишутся сообщения.
+       Покрыто тестами tests/unit/core/test_logging.py.
 
-| # | Название | Статус | Ключевые задачи |
-|---|----------|--------|-----------------|
-| 01 | Core Infrastructure | 📋 Запланирован | Config, Logging, Exceptions, CLI, Utils |
-| 02 | Model Management | 📋 Запланирован | Base Loader, LoRA Manager, Registry, 8-bit |
-| 03 | Data Pipeline | 📋 Запланирован | Data Loader, Formatter, Tokenizer |
-| 04 | Training | 📋 Запланирован | Trainer, Callbacks, LR Schedulers |
-| 05 | Inference | 📋 Запланирован | Engine, Interactive, Batch, Export |
-| 06 | Polish | 📋 Запланирован | Examples, Integration Tests, Coverage ≥70% |
+[ ] 3. Исключения: иерархия FineTuningError → ModelLoadError, DataLoadError, TrainingError.
+       Покрыто тестами tests/unit/core/test_exceptions.py.
 
-**Всего задач:** ~30 задач в 6 спринтах
-**Ожидаемый результат:** Полный функционал fine-tuning LLM с LoRA
+[ ] 4. CLI скелет: `python -m app --help` работает, команды train/inference видны.
+       Покрыто тестами tests/unit/test_cli.py.
 
-## Примечания
+[ ] 5. Device utils: `get_device()` возвращает cuda/cpu/mps.
+       Покрыто тестами tests/unit/utils/test_device.py.
 
-- Проект следует структуре референсного ai-multi-agent-system
-- Язык документации — русский
-- Технические идентификаторы — латиницей
-- Статусы задач: ToDo / Progress / Done
+[ ] 6. Memory utils: `get_memory_stats()` возвращает информацию о памяти GPU.
+       Покрыто тестами tests/unit/utils/test_memory.py.
+
+[ ] 7. Test fixtures: conftest.py с фикстурами для Settings, tokenizer, model.
+       Используется во всех тестах.
+
+[ ] 8. Example configs: configs/tinyllama_lora.env и configs/phi3_lora.env валидны.
+
+[ ] 9. Секреты: `.env` в `.gitignore`, в репо только `.env.example`. Git log не
+       содержит реальных токенов (проверено `git log -p | grep HF_TOKEN=`).
+
+[ ] 10. pytest -q зелёный, покрытие ≥ 70% по `app/`.
+        Измерение покрытия не выполнялось.
+
+Чек-лист приёмки (Спринт 02) — заполняется по мере реализации
+-------------------------------------------------------------
+
+[ ] 1. Base Model Loader: загрузка GPT2/TinyLlama из HF Hub работает.
+[ ] 2. LoRA Manager: применение LoRA через PEFT, сохранение и загрузка адаптеров.
+[ ] 3. Model Registry: предустановленные конфиги для tinyllama, phi-3, gpt2.
+[ ] 4. 8-bit quantization: работает при load_in_8bit=True.
+
+Чек-лист приёмки (Спринт 03) — заполняется по мере реализации
+-------------------------------------------------------------
+
+[ ] 1. Data Loader: загрузка JSONL, JSON, CSV, HF Datasets.
+[ ] 2. Data Formatter: Alpaca и ShareGPT шаблоны работают.
+[ ] 3. Tokenizer: токенизация с truncation/padding, labels = input_ids.
+
+Чек-лист приёмки (Спринт 04) — заполняется по мере реализации
+-------------------------------------------------------------
+
+[ ] 1. LoRA Trainer: интеграция с transformers.Trainer, обучение только adapter.
+[ ] 2. Callbacks: логирование шагов, wandb опционально.
+[ ] 3. Resume: возобновление с чекпоинта работает.
+[ ] 4. CLI train: команда `python -m app train` работает end-to-end.
+
+Чек-лист приёмки (Спринт 05) — заполняется по мере реализации
+-------------------------------------------------------------
+
+[ ] 1. Inference Engine: генерация с LoRA адаптером работает.
+[ ] 2. Interactive mode: REPL с командами /quit, /clear.
+[ ] 3. Batch processing: inference из файла работает.
+[ ] 4. Export: merge_and_save создаёт полную модель.
+
+Чек-лист приёмки (Спринт 06) — заполняется по мере реализации
+-------------------------------------------------------------
+
+[ ] 1. Examples: данные в examples/data/ работают из коробки.
+[ ] 2. Integration tests: end-to-end тесты проходят.
+[ ] 3. Coverage: покрытие ≥ 70%.
+[ ] 4. README: актуальная документация с примерами.
+
+Заметки сессии
+--------------
+
+* 2026-04-30 — Спринт 00 закрыт. Создана полная инфраструктура проекта.
+* 2026-04-30 — Все спринты 01-06 созданы и запланированы (~36 задач).
+* 2026-04-30 — Проект готов к старту реализации Спринта 01.
+
+Легенда:
+[+] — выполнено;
+[~] — частично;
+[ ] — не начато.
