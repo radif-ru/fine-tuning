@@ -3,28 +3,39 @@
 ## Текущий контекст
 
 **Спринт:** 00 Bootstrap (инфраструктурный)
-**Статус:** В процессе закрытия
+**Статус:** ✅ ЗАКРЫТ 2026-04-30
 **Дата:** 2026-04-30
 
-## Что сделано
+## Что сделано в Bootstrap
 
 - [x] Структура каталогов проекта
 - [x] Корневые файлы (.gitignore, README.md, requirements.txt, pyproject.toml)
 - [x] .env.example на русском языке
-- [x] Документация в _docs/ (10 файлов)
+- [x] Документация в _docs/ (11 файлов)
 - [x] CLAUDE.md в корне
-- [x] _board/ файлы (README.md, plan.md, process.md)
+- [x] _board/ файлы (README.md, plan.md, process.md, progress.txt)
+- [x] Спринты: 00-bootstrap.md (закрыт), 01-core-infrastructure.md (запланирован)
 - [x] Скелет app/ и tests/
+- [x] Runtime-директории с .gitkeep
+- [x] Все изменения закоммичены (4 коммита)
 
-## Что нужно сделать для закрытия Bootstrap
+## Коммиты Bootstrap
 
-- [x] Создать sprint 00-bootstrap.md
-- [x] Создать sprint 01-core-infrastructure.md
-- [ ] Закоммитить все изменения
+1. `ab680a9` — chore(repo): начальная структура и корневые файлы
+2. `98772fd` — docs: добавить полный набор документации
+3. `2f95c56` — docs(board): добавить доску задач со спринтами
+4. `530c0bd` — chore(repo): добавить скелет каталогов для кода и тестов
+
+## Следующий спринт
+
+**Спринт 01: Core Infrastructure**
+- Ветка: feature/01-core-infra
+- Задачи: Configuration, Logging, Exceptions, CLI Skeleton
+- Готов к старту
 
 ## Примечания
 
 - Проект следует структуре референсного ai_multi_agent_system
 - Язык документации — русский
 - Технические идентификаторы — латиницей
-- Все требования из лекции по LoRA + TinyLlama учтены в архитектуре
+- 4 коммита созданы по правилам Conventional Commits
