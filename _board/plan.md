@@ -14,13 +14,12 @@
 
 | # | Название | Ветка | Открыт | Закрыт | Статус |
 |---|----------|-------|--------|--------|--------|
-| — | — | — | — | — | — |
+| 01 | Core Infrastructure | `feature/01-core-infrastructure` | 2026-05-01 | — | 🏃 В работе |
 
 ### Запланированные
 
 | # | Название | Ветка | Открыт | Закрыт | Статус |
 |---|----------|-------|--------|--------|--------|
-| 01 | Core Infrastructure | `feature/01-core-infrastructure` | — | — | 📋 Запланирован |
 | 02 | Model Management | `feature/02-model-management` | — | — | 📋 Запланирован |
 | 03 | Data Pipeline | `feature/03-data-pipeline` | — | — | 📋 Запланирован |
 | 04 | Training | `feature/04-training` | — | — | 📋 Запланирован |
