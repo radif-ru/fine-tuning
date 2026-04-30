@@ -36,7 +36,7 @@
 
 ### Задача 1.1. Data Loader (`app/data/loader.py`)
 
-- **Статус:** ToDo
+- **Статус:** Done
 - **Приоритет:** critical
 - **Объём:** M
 
@@ -67,7 +67,7 @@ class DataLoader:
 
 ### Задача 2.1. Prompt Templates (`app/data/templates.py`)
 
-- **Статус:** ToDo
+- **Статус:** Done
 - **Приоритет:** high
 - **Объём:** S
 
@@ -106,7 +106,7 @@ class TemplateRegistry:
 
 ### Задача 2.2. Data Formatter (`app/data/formatter.py`)
 
-- **Статус:** ToDo
+- **Статус:** Done
 - **Приоритет:** high
 - **Объём:** M
 - **Зависит от:** Задача 2.1
@@ -135,7 +135,7 @@ class DataFormatter:
 
 ### Задача 3.1. Tokenizer Wrapper (`app/data/tokenizer.py`)
 
-- **Статус:** ToDo
+- **Статус:** Done
 - **Приоритет:** critical
 - **Объём:** M
 - **Зависит от:** Задача 2.2
@@ -165,7 +165,7 @@ class TokenizerWrapper:
 
 ### Задача 4.1. Pipeline (`app/data/pipeline.py`)
 
-- **Статус:** ToDo
+- **Статус:** Done
 - **Приоритет:** high
 - **Объём:** S
 - **Зависит от:** Задачи 1.1, 2.2, 3.1
@@ -206,11 +206,11 @@ class DataPipeline:
 
 | # | Задача | Приоритет | Объём | Статус | Зависит от |
 |---|--------|:---------:|:-----:|:------:|:----------:|
-| 1.1 | Data Loader | critical | M | ToDo | — |
-| 2.1 | Prompt Templates | high | S | ToDo | — |
-| 2.2 | Data Formatter | high | M | ToDo | 2.1 |
-| 3.1 | Tokenizer Wrapper | critical | M | ToDo | 2.2 |
-| 4.1 | Pipeline Integration | high | S | ToDo | 1.1, 2.2, 3.1 |
+| 1.1 | Data Loader | critical | M | Done | — |
+| 2.1 | Prompt Templates | high | S | Done | — |
+| 2.2 | Data Formatter | high | M | Done | 2.1 |
+| 3.1 | Tokenizer Wrapper | critical | M | Done | 2.2 |
+| 4.1 | Pipeline Integration | high | S | Done | 1.1, 2.2, 3.1 |
 
 ## 10. История
 
