@@ -56,7 +56,7 @@
 
 ### Задача 1.1. Configuration (`app/core/config.py`)
 
-- **Статус:** ToDo
+- **Статус:** Progress
 - **Приоритет:** critical
 - **Объём:** M
 - **Зависит от:** —
@@ -561,7 +561,7 @@ BF16=true
 
 | #   | Задача                                   | Приоритет | Объём | Статус | Зависит от  |
 |-----|------------------------------------------|:---------:|:-----:|:------:|:-----------:|
-| 1.1 | Configuration (`app/core/config.py`)    | critical  | M     | ToDo   | —           |
+| 1.1 | Configuration (`app/core/config.py`)    | critical  | M     | Progress | —           |
 | 1.2 | Logging (`app/core/logging_config.py`)   | high      | S     | ToDo   | —           |
 | 1.3 | Exceptions (`app/core/exceptions.py`)    | medium    | XS    | ToDo   | —           |
 | 2.1 | CLI Skeleton (`app/__main__.py`)        | high      | M     | ToDo   | 1.1, 1.2    |
