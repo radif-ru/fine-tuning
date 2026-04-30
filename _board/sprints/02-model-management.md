@@ -48,7 +48,7 @@
 
 ### Задача 1.1. Base Model Loader (`app/models/base.py`)
 
-- **Статус:** Progress
+- **Статус:** Done
 - **Приоритет:** critical
 - **Объём:** M
 - **Зависит от:** Спринт 01
@@ -82,7 +82,7 @@ class BaseModelLoader:
 
 ### Задача 2.1. LoRA Config (`app/models/lora_config.py`)
 
-- **Статус:** ToDo
+- **Статус:** Done
 - **Приоритет:** critical
 - **Объём:** S
 - **Зависит от:** —
@@ -116,7 +116,7 @@ class LoRAConfig:
 
 ### Задача 2.2. LoRA Manager (`app/models/lora.py`)
 
-- **Статус:** ToDo
+- **Статус:** Done
 - **Приоритет:** critical
 - **Объём:** M
 - **Зависит от:** Задача 1.1, 2.1
@@ -149,7 +149,7 @@ class LoRAManager:
 
 ### Задача 3.1. Model Registry (`app/models/registry.py`)
 
-- **Статус:** ToDo
+- **Статус:** Done
 - **Приоритет:** high
 - **Объём:** S
 - **Зависит от:** Задача 1.1
@@ -192,10 +192,10 @@ class ModelRegistry:
 
 | # | Задача | Приоритет | Объём | Статус | Зависит от |
 |---|--------|:---------:|:-----:|:------:|:----------:|
-| 1.1 | Base Model Loader | critical | M | Progress | — |
-| 2.1 | LoRA Config | critical | S | ToDo | — |
-| 2.2 | LoRA Manager | critical | M | ToDo | 1.1, 2.1 |
-| 3.1 | Model Registry | high | S | ToDo | 1.1 |
+| 1.1 | Base Model Loader | critical | M | Done | — |
+| 2.1 | LoRA Config | critical | S | Done | — |
+| 2.2 | LoRA Manager | critical | M | Done | 1.1, 2.1 |
+| 3.1 | Model Registry | high | S | Done | 1.1 |
 
 ## 10. История
 
