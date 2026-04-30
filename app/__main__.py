@@ -117,6 +117,46 @@ def create_parser() -> argparse.ArgumentParser:
         default=0.7,
         help="Temperature для sampling"
     )
+    inference_parser.add_argument(
+        "--top-p",
+        type=float,
+        default=0.9,
+        help="Top-p (nucleus) sampling"
+    )
+    inference_parser.add_argument(
+        "--top-k",
+        type=int,
+        default=50,
+        help="Top-k sampling"
+    )
+    inference_parser.add_argument(
+        "--repetition-penalty",
+        type=float,
+        default=1.0,
+        help="Штраф за повторения"
+    )
+    inference_parser.add_argument(
+        "--do-sample",
+        action="store_true",
+        default=True,
+        help="Использовать sampling"
+    )
+    inference_parser.add_argument(
+        "--prompt-template",
+        default="alpaca",
+        choices=["alpaca", "raw", "chat"],
+        help="Шаблон промптов"
+    )
+    inference_parser.add_argument(
+        "--device",
+        default="auto",
+        help="Устройство (auto, cpu, cuda, cuda:0)"
+    )
+    inference_parser.add_argument(
+        "--load-in-8bit",
+        action="store_true",
+        help="Загрузить в 8-bit режиме"
+    )
     
     # Export command
     export_parser = subparsers.add_parser(
@@ -193,33 +233,39 @@ def handle_inference_command(args: argparse.Namespace, settings: Settings, logge
     Returns:
         Exit code
     """
+    from app.inference.cli import InferenceCLI
+    from app.inference.config import GenerationConfig
+    
     logger.info("Запуск инференса...")
     
     logger.info(f"Модель: {args.base_model}")
     if args.adapter_path:
         logger.info(f"Адаптер: {args.adapter_path}")
     
-    if args.interactive:
-        logger.info("Интерактивный режим (нажмите Ctrl+C для выхода)")
-        # TODO: Реализовано в Sprint 05
-        logger.info("Интерактивный режим будет реализован в Sprint 05")
-    elif args.input_file:
-        logger.info(f"Batch режим: {args.input_file}")
-        if args.output_file:
-            logger.info(f"Вывод: {args.output_file}")
-        # TODO: Реализовано в Sprint 05
-        logger.info("Batch режим будет реализован в Sprint 05")
-    elif args.prompt:
-        logger.info(f"Промпт: {args.prompt}")
-        logger.info(f"Temperature: {args.temperature}")
-        logger.info(f"Max tokens: {args.max_new_tokens}")
-        # TODO: Реализовано в Sprint 05
-        logger.info("Генерация будет реализована в Sprint 05")
-    else:
-        logger.error("Укажите --prompt, --interactive или --input-file")
-        return 1
+    # Создание GenerationConfig из аргументов
+    config = GenerationConfig(
+        max_new_tokens=args.max_new_tokens,
+        temperature=args.temperature,
+        top_p=args.top_p,
+        top_k=args.top_k,
+        repetition_penalty=args.repetition_penalty,
+        do_sample=args.do_sample,
+    )
     
-    return 0
+    cli = InferenceCLI()
+    
+    return cli.run(
+        base_model=args.base_model,
+        adapter_path=args.adapter_path,
+        prompt=args.prompt,
+        interactive=args.interactive,
+        input_file=args.input_file,
+        output_file=args.output_file,
+        config=config,
+        prompt_template=args.prompt_template,
+        device=args.device,
+        load_in_8bit=args.load_in_8bit,
+    )
 
 
 def handle_export_command(args: argparse.Namespace, settings: Settings, logger) -> int:
@@ -233,15 +279,26 @@ def handle_export_command(args: argparse.Namespace, settings: Settings, logger) 
     Returns:
         Exit code
     """
+    from app.inference.export import ModelExporter
+    
     logger.info("Экспорт модели...")
     logger.info(f"Базовая модель: {args.base_model}")
     logger.info(f"Адаптер: {args.adapter_path}")
     logger.info(f"Вывод: {args.output_path}")
     
-    # TODO: Реализовано в Sprint 05
-    logger.info("Экспорт будет реализован в Sprint 05")
-    
-    return 0
+    try:
+        exporter = ModelExporter()
+        exporter.merge_and_save(
+            base_model_name=args.base_model,
+            adapter_path=args.adapter_path,
+            output_path=args.output_path,
+            save_tokenizer=True,
+        )
+        logger.info("Экспорт завершён успешно")
+        return 0
+    except Exception as e:
+        logger.error(f"Ошибка экспорта: {e}")
+        return 1
 
 
 def main() -> int:
