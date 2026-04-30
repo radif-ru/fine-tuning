@@ -26,16 +26,23 @@
 3. `2f95c56` — docs(board): добавить доску задач со спринтами
 4. `530c0bd` — chore(repo): добавить скелет каталогов для кода и тестов
 
-## Следующий спринт
+## План спринтов (все созданы)
 
-**Спринт 01: Core Infrastructure**
-- Ветка: feature/01-core-infra
-- Задачи: Configuration, Logging, Exceptions, CLI Skeleton
-- Готов к старту
+| # | Название | Статус | Ключевые задачи |
+|---|----------|--------|-----------------|
+| 01 | Core Infrastructure | 📋 Запланирован | Config, Logging, Exceptions, CLI, Utils |
+| 02 | Model Management | 📋 Запланирован | Base Loader, LoRA Manager, Registry, 8-bit |
+| 03 | Data Pipeline | 📋 Запланирован | Data Loader, Formatter, Tokenizer |
+| 04 | Training | 📋 Запланирован | Trainer, Callbacks, LR Schedulers |
+| 05 | Inference | 📋 Запланирован | Engine, Interactive, Batch, Export |
+| 06 | Polish | 📋 Запланирован | Examples, Integration Tests, Coverage ≥70% |
+
+**Всего задач:** ~30 задач в 6 спринтах
+**Ожидаемый результат:** Полный функционал fine-tuning LLM с LoRA
 
 ## Примечания
 
-- Проект следует структуре референсного ai_multi_agent_system
+- Проект следует структуре референсного ai-multi-agent-system
 - Язык документации — русский
 - Технические идентификаторы — латиницей
-- 4 коммита созданы по правилам Conventional Commits
+- Статусы задач: ToDo / Progress / Done

@@ -55,7 +55,7 @@
 
 ### Задача X.Y. Название задачи
 
-- **Статус:** Open / In Progress / Done
+- **Статус:** ToDo / Progress / Done
 - **Приоритет:** critical / high / medium / low
 - **Объём:** XS / S / M / L / XL
 - **Зависит от:** задача X.Z
@@ -81,7 +81,7 @@
 
 | # | Задача | Приоритет | Объём | Статус | Зависит от |
 |---|--------|:---------:|:-----:|:------:|:----------:|
-| X.Y | Название | high | M | Open | — |
+| X.Y | Название | high | M | ToDo | — |
 
 ## 10. История изменений
 
@@ -95,7 +95,7 @@
 ```markdown
 ### Задача X.Y. Название
 
-- **Статус:** Open / In Progress / Done
+- **Статус:** ToDo / Progress / Done
 - **Приоритет:** critical / high / medium / low
 - **Объём:** XS / S / M / L / XL
 - **Зависит от:** задача X.Z или «—»
@@ -131,8 +131,8 @@
 
 | # | Название | Ветка | Открыт | Закрыт | Статус |
 |---|----------|-------|--------|--------|--------|
-| 01 | Core Infrastructure | `feature/01-core-infra` | — | — | 📋 Запланирован |
-| 02 | Model Management | `feature/02-model-mgmt` | — | — | 📋 Запланирован |
+| 01 | Core Infrastructure | `feature/01-core-infrastructure` | — | — | 📋 Запланирован |
+| 02 | Model Management | `feature/02-model-management` | — | — | 📋 Запланирован |
 | 03 | Data Pipeline | `feature/03-data-pipeline` | — | — | 📋 Запланирован |
 | 04 | Training | `feature/04-training` | — | — | 📋 Запланирован |
 | 05 | Inference | `feature/05-inference` | — | — | 📋 Запланирован |
