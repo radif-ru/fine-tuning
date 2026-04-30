@@ -208,11 +208,9 @@ pytest --cov=app --cov-report=html --cov-report=term-missing
 
 #### Описание
 
-Обновить README.md:
+Обновить README.md разделы:
 
-```markdown
-## Quick Start
-
+**Quick Start:**
 ```bash
 # Setup
 pip install -r requirements.txt
@@ -225,16 +223,14 @@ python -m app train --config configs/tinyllama_lora.env --data-path examples/dat
 python -m app inference --adapter-path outputs/run-001/final --interactive
 ```
 
-## Features
+**Features:**
 - LoRA fine-tuning via PEFT
 - Multiple data formats (JSONL, JSON, CSV, HF Datasets)
 - 8-bit quantization support
 - Checkpointing and resume
 - Interactive inference mode
 
-## Project Structure
-...
-```
+**Project Structure:** диаграмма каталогов
 
 #### Definition of Done
 
@@ -270,7 +266,17 @@ python -m app inference --adapter-path outputs/run-001/final --interactive
 
 ---
 
-## 9. Сводная таблица задач спринта
+## 9. Риски и смягчение
+
+| # | Риск | Смягчение |
+|---|------|-----------|
+| 1 | Integration tests долгие (>5 мин) | Использовать GPT2, 1-2 эпохи, маленький датасет |
+| 2 | Coverage < 70% из-за сложных интеграций | Добавить unit-тесты для недостающих модулей |
+| 3 | Документация устарела при изменениях в коде | Проверять при закрытии каждой задачи в предыдущих спринтах |
+
+---
+
+## 10. Сводная таблица задач спринта
 
 | # | Задача | Приоритет | Объём | Статус | Зависит от |
 |---|--------|:---------:|:-----:|:------:|:----------:|
@@ -281,6 +287,6 @@ python -m app inference --adapter-path outputs/run-001/final --interactive
 | 5.1 | README Update | high | S | ToDo | Спринты 01-05 |
 | 5.2 | Documentation Review | medium | S | ToDo | Спринты 01-05 |
 
-## 10. История
+## 11. История
 
 - **YYYY-MM-DD** — спринт открыт
