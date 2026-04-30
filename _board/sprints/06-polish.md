@@ -2,9 +2,9 @@
 
 - **Источник:** Дорожная карта §Этап 6
 - **Ветка:** `feature/06-polish`
-- **Открыт:** —
+- **Открыт:** 2026-05-01
 - **Закрыт:** —
-- **Статус:** Backlog
+- **Статус:** 🏃 В работе
 
 ## 1. Цель спринта
 
@@ -39,7 +39,7 @@
 
 ### Задача 1.1. Example Datasets (`examples/data/`)
 
-- **Статус:** ToDo
+- **Статус:** Done
 - **Приоритет:** high
 - **Объём:** S
 
@@ -70,11 +70,11 @@ examples/data/
 
 #### Definition of Done
 
-- [ ] Alpaca format пример (5-10 записей)
-- [ ] ShareGPT format пример (5-10 записей)
-- [ ] Raw text пример
-- [ ] CSV пример
-- [ ] README.md в examples/data/ с описанием форматов
+- [x] Alpaca format пример (5-10 записей)
+- [x] ShareGPT format пример (5-10 записей)
+- [x] Raw text пример
+- [x] CSV пример
+- [x] README.md в examples/data/ с описанием форматов
 
 ---
 
@@ -82,7 +82,7 @@ examples/data/
 
 ### Задача 2.1. Model Configs (`configs/`)
 
-- **Статус:** ToDo
+- **Статус:** Done
 - **Приоритет:** high
 - **Объём:** S
 - **Зависит от:** Спринт 01 (уже есть базовые)
@@ -120,10 +120,10 @@ NUM_EPOCHS=3
 
 #### Definition of Done
 
-- [ ] GPT2 config для быстрых тестов
-- [ ] Training-only config
-- [ ] Inference-only config
-- [ ] Комментарии к каждому параметру
+- [x] GPT2 config для быстрых тестов (уже существует)
+- [x] Training-only config
+- [x] Inference-only config
+- [x] Комментарии к каждому параметру
 
 ---
 
@@ -131,7 +131,7 @@ NUM_EPOCHS=3
 
 ### Задача 3.1. End-to-End Tests (`tests/integration/`)
 
-- **Статус:** ToDo
+- **Статус:** Done
 - **Приоритет:** high
 - **Объём:** M
 - **Зависит от:** Спринты 01-05
@@ -156,11 +156,11 @@ def test_export_and_load():
 
 #### Definition of Done
 
-- [ ] E2E test training loop (на GPT2, 1-2 эпохи)
-- [ ] E2E test inference with adapter
-- [ ] E2E test resume from checkpoint
-- [ ] E2E test export merged model
-- [ ] Все тесты проходят < 5 минут
+- [x] E2E test training loop (на GPT2, 1-2 эпохи)
+- [x] E2E test inference with adapter
+- [x] E2E test resume from checkpoint
+- [x] E2E test export merged model
+- [x] Все тесты проходят < 5 минут
 
 ---
 
@@ -280,13 +280,14 @@ python -m app inference --adapter-path outputs/run-001/final --interactive
 
 | # | Задача | Приоритет | Объём | Статус | Зависит от |
 |---|--------|:---------:|:-----:|:------:|:----------:|
-| 1.1 | Example Datasets | high | S | ToDo | — |
-| 2.1 | Example Configs | high | S | ToDo | — |
-| 3.1 | Integration Tests | high | M | ToDo | Спринты 01-05 |
+| 1.1 | Example Datasets | high | S | Done | — |
+| 2.1 | Example Configs | high | S | Done | — |
+| 3.1 | Integration Tests | high | M | Done | Спринты 01-05 |
 | 4.1 | Test Coverage | high | M | ToDo | Спринты 01-05 |
 | 5.1 | README Update | high | S | ToDo | Спринты 01-05 |
 | 5.2 | Documentation Review | medium | S | ToDo | Спринты 01-05 |
 
 ## 11. История
 
-- **YYYY-MM-DD** — спринт открыт
+- **2026-05-01** — спринт открыт
+- **2026-05-01** — закрыты задачи 1.1, 2.1, 3.1
