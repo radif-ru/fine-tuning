@@ -48,7 +48,7 @@
 
 ### Задача 1.1. Base Model Loader (`app/models/base.py`)
 
-- **Статус:** ToDo
+- **Статус:** Progress
 - **Приоритет:** critical
 - **Объём:** M
 - **Зависит от:** Спринт 01
@@ -192,7 +192,7 @@ class ModelRegistry:
 
 | # | Задача | Приоритет | Объём | Статус | Зависит от |
 |---|--------|:---------:|:-----:|:------:|:----------:|
-| 1.1 | Base Model Loader | critical | M | ToDo | — |
+| 1.1 | Base Model Loader | critical | M | Progress | — |
 | 2.1 | LoRA Config | critical | S | ToDo | — |
 | 2.2 | LoRA Manager | critical | M | ToDo | 1.1, 2.1 |
 | 3.1 | Model Registry | high | S | ToDo | 1.1 |
