@@ -322,11 +322,181 @@ if __name__ == "__main__":
 
 ---
 
-## 7. Этап 3. Examples
+## 7. Этап 3. Utils
+
+Базовые утилиты для работы с устройствами и памятью (понадобятся в Sprint 02).
+
+### Задача 3.1. Device Utils (`app/utils/device.py`)
+
+- **Статус:** Open
+- **Приоритет:** medium
+- **Объём:** S
+- **Зависит от:** —
+- **Связанные документы:** `_docs/architecture.md` §2.5
+- **Затрагиваемые файлы:** `app/utils/device.py`, `tests/unit/utils/test_device.py`
+
+#### Описание
+
+Реализовать определение доступных устройств:
+
+```python
+import torch
+from typing import Optional
+
+def get_device(preferred: Optional[str] = None) -> str:
+    """Определить оптимальное устройство для вычислений.
+    
+    Args:
+        preferred: Предпочтительное устройство ('cuda', 'cpu', 'auto')
+    
+    Returns:
+        Строка с устройством ('cuda', 'cuda:0', 'cpu')
+    """
+    if preferred == "cpu":
+        return "cpu"
+    if preferred == "cuda" or preferred == "auto":
+        if torch.cuda.is_available():
+            return "cuda"
+    return "cpu"
+
+def get_device_info() -> dict:
+    """Получить информацию о доступных устройствах.
+    
+    Returns:
+        Словарь с информацией: cuda_available, device_count, device_name
+    """
+    info = {
+        "cuda_available": torch.cuda.is_available(),
+        "device_count": torch.cuda.device_count() if torch.cuda.is_available() else 0,
+        "device_name": torch.cuda.get_device_name(0) if torch.cuda.is_available() else None,
+    }
+    return info
+```
+
+#### Definition of Done
+
+- [ ] Функция `get_device()` возвращает корректное устройство
+- [ ] Функция `get_device_info()` возвращает информацию о CUDA
+- [ ] Работает на CPU-only системах без ошибок
+- [ ] Тесты: проверка логики выбора устройства
+
+---
+
+### Задача 3.2. Memory Utils (`app/utils/memory.py`)
+
+- **Статус:** Open
+- **Приоритет:** medium
+- **Объём:** S
+- **Зависит от:** —
+- **Связанные документы:** `_docs/architecture.md` §2.5
+- **Затрагиваемые файлы:** `app/utils/memory.py`, `tests/unit/utils/test_memory.py`
+
+#### Описание
+
+Реализовать мониторинг памяти:
+
+```python
+import torch
+from typing import Optional, Dict
+
+def get_memory_stats(device: Optional[str] = None) -> Dict[str, float]:
+    """Получить статистику использования памяти.
+    
+    Args:
+        device: Устройство ('cuda', 'cuda:0', 'cpu')
+    
+    Returns:
+        Словарь с allocated, reserved, free (в MB)
+    """
+    if device and device.startswith("cuda"):
+        allocated = torch.cuda.memory_allocated(device) / 1024**2
+        reserved = torch.cuda.memory_reserved(device) / 1024**2
+        total = torch.cuda.get_device_properties(device).total_memory / 1024**2
+        return {
+            "allocated_mb": round(allocated, 2),
+            "reserved_mb": round(reserved, 2),
+            "free_mb": round(total - allocated, 2),
+            "total_mb": round(total, 2),
+        }
+    return {"allocated_mb": 0, "reserved_mb": 0, "free_mb": 0, "total_mb": 0}
+
+def clear_memory_cache():
+    """Очистить кэш CUDA памяти."""
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
+```
+
+#### Definition of Done
+
+- [ ] `get_memory_stats()` возвращает корректные значения для CUDA
+- [ ] `get_memory_stats()` работает на CPU без ошибок
+- [ ] `clear_memory_cache()` вызывает empty_cache()
+- [ ] Тесты: проверка структуры возвращаемых данных
+
+---
+
+## 8. Этап 4. Test Infrastructure
+
+Фикстуры и вспомогательные функции для тестов.
+
+### Задача 4.1. Test Fixtures (`tests/conftest.py`)
+
+- **Статус:** Open
+- **Приоритет:** medium
+- **Объём:** S
+- **Зависит от:** Задача 1.1
+- **Связанные документы:** `_docs/testing.md`
+- **Затрагиваемые файлы:** `tests/conftest.py`
+
+#### Описание
+
+Создать базовые фикстуры pytest:
+
+```python
+import pytest
+import tempfile
+from pathlib import Path
+from app.core.config import Settings
+
+@pytest.fixture
+def temp_dir():
+    """Временная директория для тестов."""
+    with tempfile.TemporaryDirectory() as tmp:
+        yield Path(tmp)
+
+@pytest.fixture
+def mock_settings(temp_dir):
+    """Настройки для тестов с временными путями."""
+    return Settings(
+        BASE_MODEL_NAME="gpt2",
+        OUTPUT_DIR=str(temp_dir / "outputs"),
+        CHECKPOINT_DIR=str(temp_dir / "checkpoints"),
+        LOG_LEVEL="DEBUG",
+    )
+
+@pytest.fixture
+def sample_train_data():
+    """Пример тренировочных данных для тестов."""
+    return [
+        {"instruction": "Привет", "input": "", "output": "Здравствуй!"},
+        {"instruction": "Как дела?", "input": "", "output": "Хорошо, спасибо!"},
+    ]
+```
+
+#### Definition of Done
+
+- [ ] Фикстура `temp_dir` создаёт временную директорию
+- [ ] Фикстура `mock_settings` возвращает валидный Settings
+- [ ] Фикстура `sample_train_data` возвращает пример данных
+- [ ] Все фикстуры работают в тестах
+
+---
+
+## 9. Этап 5. Examples
 
 Примеры конфигураций.
 
-### Задача 3.1. Example Configs (`configs/`)
+### Задача 5.1. Example Configs (`configs/`)
 
 - **Статус:** Open
 - **Приоритет:** low
@@ -379,7 +549,7 @@ BF16=true
 
 ---
 
-## 8. Риски и смягчение
+## 10. Риски и смягчение
 
 | # | Риск | Смягчение |
 |---|------|-----------|
@@ -387,16 +557,20 @@ BF16=true
 | 2 | Неполнота списка полей Settings | При реализации следующих спринтов добавлять недостающие поля |
 | 3 | CLI требует рефакторинга при добавлении команд | Использовать subparsers, легко расширять |
 
-## 9. Сводная таблица задач спринта
+## 11. Сводная таблица задач спринта
 
-| #   | Задача                              | Приоритет | Объём | Статус | Зависит от  |
-|-----|-------------------------------------|:---------:|:-----:|:------:|:-----------:|
-| 1.1 | Configuration (`app/core/config.py`) | critical  | M     | Open   | —           |
-| 1.2 | Logging (`app/core/logging_config.py`) | high    | S     | Open   | —           |
-| 1.3 | Exceptions (`app/core/exceptions.py`) | medium  | XS    | Open   | —           |
-| 2.1 | CLI Skeleton (`app/__main__.py`)     | high      | M     | Open   | 1.1, 1.2    |
-| 3.1 | Example Configs (`configs/`)        | low       | S     | Open   | 1.1         |
+| #   | Задача                                   | Приоритет | Объём | Статус | Зависит от  |
+|-----|------------------------------------------|:---------:|:-----:|:------:|:-----------:|
+| 1.1 | Configuration (`app/core/config.py`)    | critical  | M     | Open   | —           |
+| 1.2 | Logging (`app/core/logging_config.py`)   | high      | S     | Open   | —           |
+| 1.3 | Exceptions (`app/core/exceptions.py`)    | medium    | XS    | Open   | —           |
+| 2.1 | CLI Skeleton (`app/__main__.py`)        | high      | M     | Open   | 1.1, 1.2    |
+| 3.1 | Device Utils (`app/utils/device.py`)     | medium    | S     | Open   | —           |
+| 3.2 | Memory Utils (`app/utils/memory.py`)     | medium    | S     | Open   | —           |
+| 4.1 | Test Fixtures (`tests/conftest.py`)      | medium    | S     | Open   | 1.1         |
+| 5.1 | Example Configs (`configs/`)             | low       | S     | Open   | 1.1         |
 
-## 10. История изменений спринта
+## 12. История изменений спринта
 
-- **YYYY-MM-DD** — спринт открыт (ожидает старта)
+- **2026-04-30** — спринт открыт
+- **2026-04-30** — добавлены задачи 3.1, 3.2 (Utils), 4.1 (Test Fixtures)

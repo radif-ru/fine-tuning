@@ -28,18 +28,26 @@
    - `logging_config.py` — настройка логирования
    - `exceptions.py` — иерархия исключений
 
-2. Базовые тесты (`tests/unit/core/`)
-   - Тесты конфигурации
-   - Тесты логирования
-
-3. CLI скелет (`app/__main__.py`)
+2. CLI скелет (`app/__main__.py`)
    - Аргументы командной строки
-   - Базовая структура команд
+   - Базовая структура команд train/inference
+
+3. Utils (`app/utils/`)
+   - `device.py` — определение устройств (CUDA/CPU)
+   - `memory.py` — мониторинг памяти GPU
+
+4. Test Infrastructure (`tests/`)
+   - `conftest.py` — фикстуры pytest
+   - Unit-тесты для core и utils
+
+5. Examples (`configs/`)
+   - Примеры конфигураций TinyLlama, Phi-3
 
 **Acceptance Criteria:**
 - `python -m app --help` работает
 - `pytest tests/unit/core/` проходит
 - Конфигурация загружается из `.env`
+- Утилиты device/memory работают на CPU и CUDA
 
 ---
 
