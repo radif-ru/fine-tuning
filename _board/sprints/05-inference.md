@@ -3,8 +3,8 @@
 - **Источник:** Дорожная карта §Этап 5
 - **Ветка:** `feature/05-inference`
 - **Открыт:** 2026-05-01
-- **Закрыт:** —
-- **Статус:** Backlog
+- **Закрыт:** 2026-05-01
+- **Статус:** ✅ Закрыт
 
 ## 1. Цель спринта
 
@@ -49,7 +49,7 @@
 
 ### Задача 1.1. Generation Config (`app/inference/config.py`)
 
-- **Статус:** ToDo
+- **Статус:** Done
 - **Приоритет:** high
 - **Объём:** XS
 - **Зависит от:** —
@@ -72,15 +72,15 @@ class GenerationConfig:
 
 #### Definition of Done
 
-- [ ] Dataclass с валидацией значений (temperature > 0, top_p в [0,1])
-- [ ] Метод `from_env()` для загрузки из Settings
-- [ ] Тесты: валидация, значения по умолчанию
+- [x] Dataclass с валидацией значений (temperature > 0, top_p в [0,1])
+- [x] Метод `from_env()` для загрузки из Settings
+- [x] Тесты: валидация, значения по умолчанию
 
 ---
 
 ### Задача 1.2. Inference Engine (`app/inference/engine.py`)
 
-- **Статус:** ToDo
+- **Статус:** Done
 - **Приоритет:** critical
 - **Объём:** M
 - **Зависит от:** Задача 1.1, Спринт 02
@@ -106,13 +106,13 @@ class InferenceEngine:
 
 #### Definition of Done
 
-- [ ] Загрузка базовой модели через ModelRegistry
-- [ ] Загрузка LoRA адаптера (если указан)
-- [ ] Generation с параметрами temperature, top_p, top_k
-- [ ] Batch generation
-- [ ] Streaming generation через yield
-- [ ] merge_and_unload для оптимизации
-- [ ] Тесты: генерация, batch, streaming
+- [x] Загрузка базовой модели через ModelRegistry
+- [x] Загрузка LoRA адаптера (если указан)
+- [x] Generation с параметрами temperature, top_p, top_k
+- [x] Batch generation
+- [x] Streaming generation через yield
+- [x] merge_and_unload для оптимизации
+- [x] Тесты: генерация, batch, streaming
 
 ---
 
@@ -120,7 +120,7 @@ class InferenceEngine:
 
 ### Задача 2.1. Prompt Builder (`app/inference/prompt.py`)
 
-- **Статус:** ToDo
+- **Статус:** Done
 - **Приоритет:** high
 - **Объём:** S
 - **Зависит от:** —
@@ -142,10 +142,10 @@ class PromptBuilder:
 
 #### Definition of Done
 
-- [ ] Alpaca шаблон
-- [ ] Raw шаблон (только текст)
-- [ ] Chat template через tokenizer.apply_chat_template
-- [ ] Тесты: построение промптов
+- [x] Alpaca шаблон
+- [x] Raw шаблон (только текст)
+- [x] Chat template через tokenizer.apply_chat_template
+- [x] Тесты: построение промптов
 
 ---
 
@@ -153,7 +153,7 @@ class PromptBuilder:
 
 ### Задача 3.1. Inference CLI (`app/inference/cli.py`)
 
-- **Статус:** ToDo
+- **Статус:** Done
 - **Приоритет:** high
 - **Объём:** M
 - **Зависит от:** Задача 1.2, 2.1
@@ -186,12 +186,12 @@ python -m app inference \
 
 #### Definition of Done
 
-- [ ] Single prompt mode с выводом результата
-- [ ] Interactive mode с REPL (/quit, /clear, /help)
-- [ ] Batch mode из файла (один prompt на строку)
-- [ ] Параметры: temperature, top_p, max_new_tokens
-- [ ] Graceful shutdown (Ctrl+C)
-- [ ] Тесты: все режимы
+- [x] Single prompt mode с выводом результата
+- [x] Interactive mode с REPL (/quit, /clear, /help)
+- [x] Batch mode из файла (один prompt на строку)
+- [x] Параметры: temperature, top_p, max_new_tokens
+- [x] Graceful shutdown (Ctrl+C)
+- [x] Тесты: все режимы
 
 ---
 
@@ -199,7 +199,7 @@ python -m app inference \
 
 ### Задача 4.1. Merge and Export (`app/inference/export.py`)
 
-- **Статус:** ToDo
+- **Статус:** Done
 - **Приоритет:** medium
 - **Объём:** S
 - **Зависит от:** Задача 1.2
@@ -227,11 +227,11 @@ python -m app export \
 
 #### Definition of Done
 
-- [ ] Мерж LoRA в базовую модель через merge_and_unload()
-- [ ] Сохранение полной модели (не только адаптера)
-- [ ] Сохранение tokenizer
-- [ ] CLI команда export
-- [ ] Тесты: экспорт, загрузка объединённой модели
+- [x] Мерж LoRA в базовую модель через merge_and_unload()
+- [x] Сохранение полной модели (не только адаптера)
+- [x] Сохранение tokenizer
+- [x] CLI команда export
+- [x] Тесты: экспорт, загрузка объединённой модели
 
 ---
 
@@ -249,12 +249,14 @@ python -m app export \
 
 | # | Задача | Приоритет | Объём | Статус | Зависит от |
 |---|--------|:---------:|:-----:|:------:|:----------:|
-| 1.1 | Generation Config | high | XS | ToDo | — |
-| 1.2 | Inference Engine | critical | M | ToDo | 1.1 |
-| 2.1 | Prompt Builder | high | S | ToDo | — |
-| 3.1 | Inference CLI | high | M | ToDo | 1.2, 2.1 |
-| 4.1 | Merge and Export | medium | S | ToDo | 1.2 |
+| 1.1 | Generation Config | high | XS | Done | — |
+| 1.2 | Inference Engine | critical | M | Done | 1.1 |
+| 2.1 | Prompt Builder | high | S | Done | — |
+| 3.1 | Inference CLI | high | M | Done | 1.2, 2.1 |
+| 4.1 | Merge and Export | medium | S | Done | 1.2 |
 
 ## 11. История
 
-- **YYYY-MM-DD** — спринт открыт
+- **2026-05-01** — спринт открыт
+- **2026-05-01** — закрыты задачи 1.1, 1.2, 2.1, 3.1, 4.1
+- **2026-05-01** — спринт закрыт
