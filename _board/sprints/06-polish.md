@@ -202,13 +202,13 @@ pytest --cov=app --cov-report=html --cov-report=term-missing
 
 ### Задача 5.1. README Update
 
-- **Статус:** ToDo
+- **Статус:** Done
 - **Приоритет:** high
 - **Объём:** S
 
 #### Описание
 
-Обновить README.md разделы:
+Обновлен README.md разделы:
 
 **Quick Start:**
 ```bash
@@ -234,17 +234,17 @@ python -m app inference --adapter-path outputs/run-001/final --interactive
 
 #### Definition of Done
 
-- [ ] Quick Start section
-- [ ] Features list
-- [ ] Project structure diagram
-- [ ] Installation instructions
-- [ ] Usage examples
+- [x] Quick Start section
+- [x] Features list
+- [x] Project structure diagram
+- [x] Installation instructions
+- [x] Usage examples
 
 ---
 
 ### Задача 5.2. Documentation Review
 
-- **Статус:** ToDo
+- **Статус:** Done
 - **Приоритет:** medium
 - **Объём:** S
 
@@ -260,9 +260,9 @@ python -m app inference --adapter-path outputs/run-001/final --interactive
 
 #### Definition of Done
 
-- [ ] Все документы проверены
-- [ ] Несоответствия исправлены
-- [ ] Ссылки работают
+- [x] Все документы проверены
+- [x] Несоответствия исправлены
+- [x] Ссылки работают
 
 ---
 
@@ -284,11 +284,13 @@ python -m app inference --adapter-path outputs/run-001/final --interactive
 | 2.1 | Example Configs | high | S | Done | — |
 | 3.1 | Integration Tests | high | M | Done | Спринты 01-05 |
 | 4.1 | Test Coverage | high | M | Done | Спринты 01-05 |
-| 5.1 | README Update | high | S | ToDo | Спринты 01-05 |
-| 5.2 | Documentation Review | medium | S | ToDo | Спринты 01-05 |
+| 5.1 | README Update | high | S | Done | Спринты 01-05 |
+| 5.2 | Documentation Review | medium | S | Done | Спринты 01-05 |
 
 ## 11. История
 
 - **2026-05-01** — спринт открыт
 - **2026-05-01** — закрыты задачи 1.1, 2.1, 3.1
 - **2026-05-01** — закрыта задача 4.1
+- **2026-05-01** — закрыта задача 5.1
+- **2026-05-01** — закрыта задача 5.2

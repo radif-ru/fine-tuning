@@ -4,14 +4,18 @@
 
 ## Возможности
 
-- **LoRA Fine-Tuning** — эффективное дообучение с минимальными вычислительными затратами
-- **Поддержка любых моделей** — работа с любыми causal language models из HuggingFace Hub
-- **Гибкая конфигурация** — все параметры через `.env` файл, без изменения кода
-- **Инструкционное дообучение** — поддержка форматов instruction/response для chat-моделей
-- **Мониторинг** — интеграция с Weights & Biases и TensorBoard
-- **Логирование** — структурированное логирование всех этапов
-- **CLI-интерфейс** — удобный запуск тренировки и инференса
-- **Покрытие тестами** — unit и integration тесты
+- **🧠 LoRA Fine-Tuning** — эффективное дообучение с минимальными вычислительными затратами через PEFT
+- **🤗 Поддержка HuggingFace Hub** — работа с любыми causal language models
+- **⚙️ Гибкая конфигурация** — все параметры через `.env` файл, без изменения кода
+- **📊 Множественные форматы данных** — JSONL, JSON, CSV, HF Datasets с шаблонами Alpaca и ShareGPT
+- **💾 Checkpointing** — сохранение и возобновление обучения с любого шага
+- **🎯 Инференс** — single prompt, интерактивный REPL, batch processing из файла
+- **📦 Export** — merge LoRA адаптера в полную модель для деплоя
+- **🔢 8-bit Quantization** — обучение и инференс с квантизацией для экономии памяти
+- **📈 Мониторинг** — интеграция с Weights & Biases и TensorBoard
+- **📝 Структурированное логирование** — все этапы с ротацией логов
+- **🖥️ CLI-интерфейс** — удобный запуск всех операций
+- **🧪 Покрытие тестами** — 70%+ покрытие, unit и integration тесты
 
 ## Требования
 
@@ -19,6 +23,36 @@
 - **CUDA** 11.8+ (для GPU-ускорения) или CPU-only режим
 - **ОЗУ** — минимум 8GB (16GB+ рекомендуется)
 - **Диск** — 10GB+ для кэша моделей
+
+## Quick Start
+
+```bash
+# 1. Клонировать и установить
+git clone <repo-url>
+cd fine-tuning
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+
+# 2. Настроить окружение
+cp .env.example .env
+# Отредактируйте .env под вашу задачу
+
+# 3. Обучение
+python -m app train \
+  --config configs/tinyllama_lora.env \
+  --data-path examples/data/alpaca_format.jsonl
+
+# 4. Инференс (интерактивный режим)
+python -m app inference \
+  --adapter-path outputs/run-001/final \
+  --interactive
+
+# 5. Экспорт модели
+python -m app export \
+  --base-model TinyLlama/TinyLlama-1.1B-Chat-v1.0 \
+  --adapter-path outputs/run-001/final \
+  --output-path ./merged-model
+```
 
 ## Установка
 
