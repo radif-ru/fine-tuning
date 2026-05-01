@@ -294,9 +294,9 @@ python -m app inference --adapter-path outputs/run-001/final --interactive
 
 #### Definition of Done
 
-- [ ] Все файлы добавлены в git
-- [ ] Создан коммит с описанием изменений
-- [ ] `git status` показывает чистое состояние
+- [x] Все файлы добавлены в git
+- [x] Создан коммит с описанием изменений
+- [x] `git status` показывает чистое состояние
 
 ---
 
@@ -320,7 +320,7 @@ python -m app inference --adapter-path outputs/run-001/final --interactive
 | 4.1 | Test Coverage | high | M | Done | Спринты 01-05 |
 | 5.1 | README Update | high | S | Done | Спринты 01-05 |
 | 5.2 | Documentation Review | medium | S | Done | Спринты 01-05 |
-| 6.1 | Commit All Pending Changes | critical | M | Progress | — |
+| 6.1 | Commit All Pending Changes | critical | M | Done | — |
 
 ## 12. История
 
