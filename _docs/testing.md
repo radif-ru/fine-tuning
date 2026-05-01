@@ -21,17 +21,30 @@ tests/
 │   │   └── test_logging.py
 │   ├── models/
 │   │   ├── test_base.py
-│   │   └── test_lora.py
+│   │   ├── test_lora.py
+│   │   └── test_registry.py
 │   ├── data/
 │   │   ├── test_loader.py
 │   │   ├── test_formatter.py
-│   │   └── test_tokenizer.py
-│   └── training/
-│       ├── test_trainer.py
-│       └── test_callbacks.py
+│   │   ├── test_tokenizer.py
+│   │   └── test_templates.py
+│   ├── training/
+│   │   ├── test_trainer.py
+│   │   ├── test_callbacks.py
+│   │   └── test_training_config.py
+│   ├── inference/
+│   │   ├── test_config.py
+│   │   ├── test_engine.py
+│   │   ├── test_prompt.py
+│   │   ├── test_cli.py
+│   │   └── test_export.py
+│   ├── utils/
+│   │   ├── test_device.py
+│   │   └── test_memory.py
+│   └── test_cli.py
 └── integration/
     ├── __init__.py
-    └── test_training_pipeline.py
+    └── test_e2e.py
 ```
 
 ## Конфигурация pytest
@@ -365,6 +378,8 @@ class TestTrainingPipeline:
 - `app/models/`: ≥ 80%
 - `app/data/`: ≥ 75%
 - `app/training/`: ≥ 70%
+- `app/inference/`: ≥ 70%
+- `app/utils/`: ≥ 80%
 
 ### Отчёт о покрытии
 
