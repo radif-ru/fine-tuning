@@ -2,8 +2,8 @@
 
 - **Источник:** Требования из `_docs/requirements.md` и архитектура из `_docs/architecture.md`
 - **Ветка:** `feature/01-core-infra`
-- **Открыт:** —
-- **Закрыт:** —
+- **Открыт:** 2026-05-01
+- **Закрыт:** 2026-05-01
 
 ## 1. Цель спринта
 
@@ -56,7 +56,7 @@
 
 ### Задача 1.1. Configuration (`app/core/config.py`)
 
-- **Статус:** ToDo
+- **Статус:** Done
 - **Приоритет:** critical
 - **Объём:** M
 - **Зависит от:** —
@@ -118,7 +118,7 @@ class Settings(BaseSettings):
 
 ### Задача 1.2. Logging (`app/core/logging_config.py`)
 
-- **Статус:** ToDo
+- **Статус:** Done
 - **Приоритет:** high
 - **Объём:** S
 - **Зависит от:** —
@@ -184,7 +184,7 @@ def setup_logging(
 
 ### Задача 1.3. Exceptions (`app/core/exceptions.py`)
 
-- **Статус:** ToDo
+- **Статус:** Done
 - **Приоритет:** medium
 - **Объём:** XS
 - **Зависит от:** —
@@ -236,7 +236,7 @@ class InferenceError(FineTuningError):
 
 ### Задача 2.1. CLI Skeleton (`app/__main__.py`)
 
-- **Статус:** ToDo
+- **Статус:** Done
 - **Приоритет:** high
 - **Объём:** M
 - **Зависит от:** Задача 1.1, 1.2
@@ -328,7 +328,7 @@ if __name__ == "__main__":
 
 ### Задача 3.1. Device Utils (`app/utils/device.py`)
 
-- **Статус:** ToDo
+- **Статус:** Done
 - **Приоритет:** medium
 - **Объём:** S
 - **Зависит от:** —
@@ -384,7 +384,7 @@ def get_device_info() -> dict:
 
 ### Задача 3.2. Memory Utils (`app/utils/memory.py`)
 
-- **Статус:** ToDo
+- **Статус:** Done
 - **Приоритет:** medium
 - **Объём:** S
 - **Зависит от:** —
@@ -441,7 +441,7 @@ def clear_memory_cache():
 
 ### Задача 4.1. Test Fixtures (`tests/conftest.py`)
 
-- **Статус:** ToDo
+- **Статус:** Done
 - **Приоритет:** medium
 - **Объём:** S
 - **Зависит от:** Задача 1.1
@@ -498,7 +498,7 @@ def sample_train_data():
 
 ### Задача 5.1. Example Configs (`configs/`)
 
-- **Статус:** ToDo
+- **Статус:** Done
 - **Приоритет:** low
 - **Объём:** S
 - **Зависит от:** Задача 1.1
@@ -561,16 +561,17 @@ BF16=true
 
 | #   | Задача                                   | Приоритет | Объём | Статус | Зависит от  |
 |-----|------------------------------------------|:---------:|:-----:|:------:|:-----------:|
-| 1.1 | Configuration (`app/core/config.py`)    | critical  | M     | ToDo   | —           |
-| 1.2 | Logging (`app/core/logging_config.py`)   | high      | S     | ToDo   | —           |
-| 1.3 | Exceptions (`app/core/exceptions.py`)    | medium    | XS    | ToDo   | —           |
-| 2.1 | CLI Skeleton (`app/__main__.py`)        | high      | M     | ToDo   | 1.1, 1.2    |
-| 3.1 | Device Utils (`app/utils/device.py`)     | medium    | S     | ToDo   | —           |
-| 3.2 | Memory Utils (`app/utils/memory.py`)     | medium    | S     | ToDo   | —           |
-| 4.1 | Test Fixtures (`tests/conftest.py`)      | medium    | S     | ToDo   | 1.1         |
-| 5.1 | Example Configs (`configs/`)             | low       | S     | ToDo   | 1.1         |
+| 1.1 | Configuration (`app/core/config.py`)    | critical  | M     | Done | —           |
+| 1.2 | Logging (`app/core/logging_config.py`)   | high      | S     | Done   | —           |
+| 1.3 | Exceptions (`app/core/exceptions.py`)    | medium    | XS    | Done   | —           |
+| 2.1 | CLI Skeleton (`app/__main__.py`)        | high      | M     | Done   | 1.1, 1.2    |
+| 3.1 | Device Utils (`app/utils/device.py`)     | medium    | S     | Done   | —           |
+| 3.2 | Memory Utils (`app/utils/memory.py`)     | medium    | S     | Done   | —           |
+| 4.1 | Test Fixtures (`tests/conftest.py`)      | medium    | S     | Done   | 1.1         |
+| 5.1 | Example Configs (`configs/`)             | low       | S     | Done   | 1.1         |
 
 ## 12. История изменений спринта
 
 - **2026-04-30** — спринт открыт
 - **2026-04-30** — добавлены задачи 3.1, 3.2 (Utils), 4.1 (Test Fixtures)
+- **2026-05-01** — спринт закрыт
