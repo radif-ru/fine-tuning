@@ -44,15 +44,15 @@ class TestDataFormatter:
         result = formatter.format_alpaca(dataset)
         
         assert "text" in result.column_names
-        assert "### Instruction:" in result[0]["text"]
+        assert "### Инструкция:" in result[0]["text"]
         assert "Привет!" in result[0]["text"]
     
     def test_format_alpaca_with_input(self, formatter, alpaca_dataset):
         """Проверка форматирования Alpaca с input."""
         result = formatter.format_alpaca(alpaca_dataset)
         
-        # Вторая запись должна иметь ### Input:
-        assert "### Input:" in result[1]["text"]
+        # Вторая запись должна иметь ### Входные данные:
+        assert "### Входные данные:" in result[1]["text"]
     
     def test_format_raw(self, formatter, raw_dataset):
         """Проверка форматирования raw."""

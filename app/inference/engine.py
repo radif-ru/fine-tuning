@@ -1,4 +1,4 @@
-"""Inference Engine для генерации текста.
+"""Движок инференса для генерации текста.
 
 Поддерживает загрузку моделей, LoRA адаптеров, генерацию текста
 в различных режимах: single, batch, streaming.
@@ -138,14 +138,18 @@ class InferenceEngine:
             device = self._model.device
             inputs = {k: v.to(device) if hasattr(v, 'to') else v for k, v in inputs.items()}
             
-            # Generation
+            # Генерация
             generation_kwargs = config.to_dict()
             generation_kwargs["pad_token_id"] = self._tokenizer.pad_token_id
             generation_kwargs["eos_token_id"] = self._tokenizer.eos_token_id
             
+            # Добавляем attention_mask если есть
+            if "attention_mask" in inputs:
+                generation_kwargs["attention_mask"] = inputs["attention_mask"]
+            
             with torch.no_grad():
                 outputs = self._model.generate(
-                    **inputs,
+                    inputs["input_ids"],
                     **generation_kwargs
                 )
             
@@ -234,7 +238,7 @@ class InferenceEngine:
             device = self._model.device
             inputs = {k: v.to(device) if hasattr(v, 'to') else v for k, v in inputs.items()}
             
-            # Streaming generation
+            # Потоковая генерация
             input_length = inputs["input_ids"].shape[1]
             
             generation_kwargs = config.to_dict()
@@ -253,12 +257,15 @@ class InferenceEngine:
             
             generation_kwargs["streamer"] = streamer
             
+            # Добавляем attention_mask если есть
+            if "attention_mask" in inputs:
+                generation_kwargs["attention_mask"] = inputs["attention_mask"]
+            
             # Запуск generation в отдельном потоке
-            generation_kwargs = {**inputs, **generation_kwargs}
-            thread = Thread(target=self._model.generate, kwargs=generation_kwargs)
+            thread = Thread(target=self._model.generate, args=(inputs["input_ids"],), kwargs=generation_kwargs)
             thread.start()
             
-            # Yield токены по мере генерации
+            # Возвращаем токены по мере генерации
             for text in streamer:
                 if text:
                     yield text

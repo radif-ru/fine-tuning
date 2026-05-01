@@ -154,7 +154,7 @@ cp .env.example .env
 # отредактировать .env — указать пути, модели
 
 # 3) запуск тренировки
-python -m app train --config .env
+python -m app train
 
 # 4) тесты
 pytest -q

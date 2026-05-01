@@ -1,4 +1,4 @@
-"""Prompt Builder для форматирования промптов.
+"""Построитель промптов для форматирования.
 
 Поддерживает различные шаблоны: alpaca, raw, chat.
 """
@@ -21,19 +21,19 @@ class PromptBuilder:
     
     # Шаблон Alpaca
     ALPACA_TEMPLATE = (
-        "Below is an instruction that describes a task. "
-        "Write a response that appropriately completes the request.\n\n"
-        "### Instruction:\n{instruction}\n\n"
-        "### Response:\n"
+        "Ниже приведена инструкция, описывающая задачу. "
+        "Напишите ответ, который соответствующим образом завершает запрос.\n\n"
+        "### Инструкция:\n{instruction}\n\n"
+        "### Ответ:\n"
     )
     
     ALPACA_TEMPLATE_WITH_CONTEXT = (
-        "Below is an instruction that describes a task, paired with an input "
-        "that provides further context. Write a response that appropriately "
-        "completes the request.\n\n"
-        "### Instruction:\n{instruction}\n\n"
-        "### Input:\n{context}\n\n"
-        "### Response:\n"
+        "Ниже приведена инструкция, описывающая задачу, с входными данными, "
+        "предоставляющими дополнительный контекст. Напишите ответ, который соответствующим образом "
+        "завершает запрос.\n\n"
+        "### Инструкция:\n{instruction}\n\n"
+        "### Входные данные:\n{context}\n\n"
+        "### Ответ:\n"
     )
     
     def __init__(self, template_name: str = "alpaca"):
@@ -179,7 +179,7 @@ class PromptBuilder:
             except Exception as e:
                 logger.warning(f"apply_chat_template не сработал: {e}")
         
-        # Fallback для других шаблонов
+        # Резервный вариант для других шаблонов
         parts = []
         if system_prompt:
             parts.append(f"System: {system_prompt}")

@@ -1,6 +1,6 @@
 """Иерархия исключений для фреймворка fine-tuning.
 
-Все исключения наследуются от FineTuningError для统一ной обработки ошибок.
+Все исключения наследуются от FineTuningError для унифицированной обработки ошибок.
 """
 
 
@@ -8,7 +8,7 @@ class FineTuningError(Exception):
     """Базовый класс для всех ошибок фреймворка."""
     
     def __init__(self, message: str, **kwargs):
-        """Initialize error with message and optional context.
+        """Инициализация ошибки с сообщением и дополнительным контекстом.
         
         Args:
             message: Описание ошибки

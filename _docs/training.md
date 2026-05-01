@@ -1,5 +1,109 @@
 # Процесс обучения
 
+## Полный workflow обучения
+
+Проект поддерживает полный цикл fine-tuning LLM с LoRA:
+
+### 1. Подготовка данных
+
+Генерация синтетического датасета или подготовка собственных данных:
+
+```bash
+# Генерация синтетического датасета (Alpaca формат)
+python -m app generate-dataset \
+  --type synthetic \
+  --output data/synthetic_train.jsonl \
+  --count 100 \
+  --topics programming science \
+  --seed 42
+```
+
+Формат данных: JSONL с полями `instruction`, `input`, `output` (Alpaca формат).
+
+Пример формата данных:
+```jsonl
+{"instruction": "Напиши функцию на Python для сортировки списка", "input": "", "output": "Вот пример функции..."}
+{"instruction": "Объясни концепцию рекурсии", "input": "", "output": "Рекурсия — это..."}
+```
+
+### 2. Настройка конфигурации
+
+Используйте готовую конфигурацию или создайте свою:
+
+```bash
+# Использование готовой конфигурации для TinyLlama
+cp configs/tinyllama_lora.env .env
+
+# Или создание своей конфигурации
+cp .env.example .env
+# Отредактируйте .env с нужными параметрами
+```
+
+Ключевые параметры в `configs/tinyllama_lora.env`:
+```bash
+# LoRA параметры (оптимальные для TinyLlama)
+LORA_R=8              # Rank адаптера
+LORA_ALPHA=32         # Alpha параметр масштабирования
+LORA_TARGET_MODULES=q_proj,v_proj  # Модули для адаптации
+
+# Параметры обучения
+NUM_EPOCHS=3          # Количество эпох
+PER_DEVICE_BATCH_SIZE=4
+GRADIENT_ACCUMULATION_STEPS=4
+LEARNING_RATE=2e-4
+MAX_SEQ_LENGTH=512
+
+# Оптимизации
+FP16=true             # Смешанная точность
+GRADIENT_CHECKPOINTING=true  # Экономия памяти
+```
+
+### 3. Запуск обучения
+
+```bash
+# Обучение с конфигурационным файлом
+python -m app --config configs/tinyllama_lora.env train \
+  --data-path data/synthetic_train.jsonl
+
+# С переопределением параметров
+python -m app --config configs/tinyllama_lora.env train \
+  --data-path data/synthetic_train.jsonl \
+  --epochs 5 \
+  --batch-size 2
+
+# Возобновление из чекпоинта
+python -m app --config configs/tinyllama_lora.env train \
+  --resume-from-checkpoint ./outputs/tinyllama/checkpoint-500
+```
+
+### 4. Тестирование модели
+
+```bash
+# Интерактивный режим
+python -m app inference \
+  --base-model TinyLlama/TinyLlama-1.1B-Chat-v1.0 \
+  --adapter-path outputs/tinyllama/final \
+  --interactive
+
+# Одиночный промпт
+python -m app inference \
+  --base-model TinyLlama/TinyLlama-1.1B-Chat-v1.0 \
+  --adapter-path outputs/tinyllama/final \
+  --prompt "Напиши функцию на Python для сортировки списка"
+```
+
+### 5. Сборка финальной модели
+
+```bash
+# Merge LoRA адаптера с базовой моделью
+python -m app export \
+  --base-model TinyLlama/TinyLlama-1.1B-Chat-v1.0 \
+  --adapter-path outputs/tinyllama/final \
+  --output-path ./merged-model
+```
+
+## Детальный процесс обучения
+
 ## Обзор
 
 Тренировочный цикл состоит из следующих этапов:

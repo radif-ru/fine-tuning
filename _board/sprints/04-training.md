@@ -30,13 +30,13 @@
 
 ## 3. Acceptance Criteria
 
-- [ ] Тренировка на GPT2 проходит до конца
-- [ ] LoRA обучает только adapter параметры
-- [ ] Чекпоинты сохраняются каждые N steps
-- [ ] Resume from checkpoint работает
-- [ ] WandB логирование работает (опционально)
-- [ ] CLI train команда работает
-- [ ] `pytest tests/unit/training/` проходит
+- [+] Тренировка на GPT2 проходит до конца
+- [+] LoRA обучает только adapter параметры
+- [+] Чекпоинты сохраняются каждые N steps
+- [+] Resume from checkpoint работает
+- [+] WandB логирование работает (опционально)
+- [+] CLI train команда работает
+- [+] `pytest tests/unit/training/` проходит
 
 ## 4. Этап 1. Training Configuration
 

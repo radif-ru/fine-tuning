@@ -74,7 +74,7 @@ class TestTemplateRegistry:
         template = registry.get("alpaca")
         
         assert template.name == "alpaca"
-        assert "### Instruction:" in template.template
+        assert "### Инструкция:" in template.template
     
     def test_get_nonexistent(self, registry):
         """Проверка получения несуществующего шаблона."""
@@ -99,14 +99,14 @@ class TestFormatFunctions:
         """Проверка форматирования Alpaca с input."""
         result = format_alpaca(
             instruction="Напиши привет",
-            input="на русском",
+            input_text="на русском",
             output="Привет!"
         )
         
-        assert "### Instruction:" in result
+        assert "### Инструкция:" in result
         assert "Напиши привет" in result
-        assert "### Input:" in result
-        assert "### Response:" in result
+        assert "### Входные данные:" in result
+        assert "### Ответ:" in result
     
     def test_format_alpaca_without_input(self):
         """Проверка форматирования Alpaca без input."""
@@ -115,9 +115,9 @@ class TestFormatFunctions:
             output="Привет!"
         )
         
-        assert "### Instruction:" in result
-        assert "### Response:" in result
-        assert "### Input:" not in result
+        assert "### Инструкция:" in result
+        assert "### Ответ:" in result
+        assert "### Входные данные:" not in result
     
     def test_format_sharegpt(self):
         """Проверка форматирования ShareGPT."""

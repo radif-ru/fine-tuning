@@ -213,13 +213,13 @@ class BaseModelLoader:
         if self.cache_dir:
             kwargs["cache_dir"] = self.cache_dir
         
-        # Device map
+        # Карта устройств
         if device_map == "auto":
             kwargs["device_map"] = get_device("auto")
         elif device_map:
             kwargs["device_map"] = device_map
         
-        # 8-bit quantization
+        # 8-битная квантизация
         if load_in_8bit:
             try:
                 from transformers import BitsAndBytesConfig
@@ -230,7 +230,7 @@ class BaseModelLoader:
                     "pip install bitsandbytes"
                 )
         
-        # Torch dtype
+        # Тип данных torch
         if torch_dtype:
             dtype_map = {
                 "float16": torch.float16,

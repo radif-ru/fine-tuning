@@ -59,27 +59,27 @@ class PromptTemplate:
 ALPACA_TEMPLATE = PromptTemplate(
     name="alpaca",
     description="Стандартный Alpaca формат с instruction/input/output",
-    template="""Below is an instruction that describes a task, paired with an input that provides further context. Write a response that appropriately completes the request.
+    template="""Ниже приведена инструкция, описывающая задачу, с входными данными, предоставляющими дополнительный контекст. Напишите ответ, который соответствующим образом завершает запрос.
 
-### Instruction:
+### Инструкция:
 {instruction}
 
-### Input:
+### Входные данные:
 {input}
 
-### Response:
+### Ответ:
 {output}"""
 )
 
 ALPACA_NO_INPUT_TEMPLATE = PromptTemplate(
     name="alpaca_no_input",
     description="Alpaca формат без input поля",
-    template="""Below is an instruction that describes a task. Write a response that appropriately completes the request.
+    template="""Ниже приведена инструкция, описывающая задачу. Напишите ответ, который соответствующим образом завершает запрос.
 
-### Instruction:
+### Инструкция:
 {instruction}
 
-### Response:
+### Ответ:
 {output}"""
 )
 
