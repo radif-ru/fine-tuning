@@ -124,7 +124,7 @@ class LoRAManager:
 class DataLoader:
     def load(self, path: str) -> Dataset:
         ...
-    
+
     def validate(self, dataset: Dataset) -> bool:
         ...
 ```
@@ -156,6 +156,60 @@ class DataFormatter:
 - Truncation
 - Padding
 - Batch encoding
+
+#### 3.4 Data Generators (`generators/`)
+
+Генераторы синтетических датасетов для обучения.
+
+**Базовый класс (`generators/base.py`):**
+```python
+class BaseGenerator(ABC):
+    @abstractmethod
+    def generate(self, count: int) -> Iterator[Dict[str, Any]]:
+        """Генерирует указанное количество примеров"""
+        pass
+
+    def save(self, path: str, count: int, format: str = "jsonl") -> None:
+        """Сохраняет сгенерированные данные в файл"""
+        pass
+```
+
+**Синтетический генератор (`generators/synthetic.py`):**
+```python
+class SyntheticGenerator(BaseGenerator):
+    """Генерирует синтетические инструкции и ответы для fine-tuning"""
+
+    def __init__(self, topics: list[str] | None = None, seed: int | None = None):
+        self.topics = topics or ["programming", "science", "general"]
+```
+
+**Поддерживаемые темы:**
+- `programming` — программирование, алгоритмы, концепции
+- `science` — научные концепции, явления, процессы
+- `general` — общие вопросы, эссе, обзоры
+
+**QA генератор (`generators/qa.py`):**
+```python
+class QAGenerator(BaseGenerator):
+    """Генерирует вопросы и ответы для обучения модели"""
+
+    def __init__(self, categories: list[str] | None = None, seed: int | None = None):
+        self.categories = categories or ["general", "technical", "practical"]
+```
+
+**Поддерживаемые категории QA:**
+- `general` — общие вопросы о концепциях и явлениях
+- `technical` — технические вопросы о коде, алгоритмах, инструментах
+- `practical` — практические вопросы о том, как что-то сделать
+
+**CLI команда:**
+```bash
+# Синтетический генератор
+python -m app generate-dataset --type synthetic --output data/synthetic.jsonl --count 100
+
+# QA генератор
+python -m app generate-dataset --type qa --output data/qa.jsonl --count 100 --categories technical
+```
 
 ### 4. Training (`app/training/`)
 

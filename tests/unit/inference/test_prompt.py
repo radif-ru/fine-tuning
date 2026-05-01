@@ -18,11 +18,11 @@ class TestPromptBuilder:
         builder = PromptBuilder("alpaca")
         prompt = builder.build("What is LoRA?")
         
-        assert "Below is an instruction" in prompt
-        assert "### Instruction:" in prompt
+        assert "Ниже приведена инструкция" in prompt
+        assert "### Инструкция:" in prompt
         assert "What is LoRA?" in prompt
-        assert "### Response:" in prompt
-        assert "### Input:" not in prompt
+        assert "### Ответ:" in prompt
+        assert "### Входные данные:" not in prompt
     
     def test_alpaca_template_with_context(self):
         """Проверка Alpaca шаблона с контекстом."""
@@ -32,13 +32,13 @@ class TestPromptBuilder:
             context="We are discussing machine learning."
         )
         
-        assert "Below is an instruction" in prompt
-        assert "paired with an input" in prompt
-        assert "### Instruction:" in prompt
+        assert "Ниже приведена инструкция" in prompt
+        assert "входными данными" in prompt
+        assert "### Инструкция:" in prompt
         assert "Explain this concept." in prompt
-        assert "### Input:" in prompt
+        assert "### Входные данные:" in prompt
         assert "We are discussing machine learning." in prompt
-        assert "### Response:" in prompt
+        assert "### Ответ:" in prompt
     
     def test_raw_template(self):
         """Проверка raw шаблона."""
@@ -131,7 +131,7 @@ class TestFactoryFunctions:
         """Проверка create_alpaca_prompt."""
         prompt = create_alpaca_prompt("What is AI?")
         
-        assert "Below is an instruction" in prompt
+        assert "Ниже приведена инструкция" in prompt
         assert "What is AI?" in prompt
     
     def test_create_raw_prompt(self):
@@ -166,8 +166,8 @@ class TestPromptBuilderEdgeCases:
         builder = PromptBuilder("alpaca")
         prompt = builder.build("")
         
-        assert "### Instruction:" in prompt
-        assert "### Response:" in prompt
+        assert "### Инструкция:" in prompt
+        assert "### Ответ:" in prompt
     
     def test_empty_context(self):
         """Проверка пустого контекста (не должен добавлять Input секцию)."""
@@ -175,7 +175,7 @@ class TestPromptBuilderEdgeCases:
         prompt = builder.build("Question", context="")
         
         # С пустым контекстом не должно быть Input секции
-        assert "### Input:" not in prompt
+        assert "### Входные данные:" not in prompt
     
     def test_special_characters(self):
         """Проверка специальных символов."""
