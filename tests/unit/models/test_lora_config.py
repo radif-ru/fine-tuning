@@ -85,7 +85,8 @@ class TestLoRAConfig:
         settings.LORA_R = 4
         settings.LORA_ALPHA = 8
         settings.LORA_DROPOUT = 0.1
-        settings.LORA_TARGET_MODULES = ["c_attn"]
+        settings.LORA_TARGET_MODULES = "c_attn"
+        settings.lora_target_modules_list = ["c_attn"]
         settings.LORA_BIAS = "all"
         settings.LORA_TASK_TYPE = "SEQ_CLS"
         

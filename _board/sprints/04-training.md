@@ -3,7 +3,7 @@
 - **Источник:** Дорожная карта §Этап 4
 - **Ветка:** `feature/04-training`
 - **Открыт:** 2026-05-01
-- **Закрыт:** —
+- **Закрыт:** 2026-05-01
 - **Статус:** Backlog
 
 ## 1. Цель спринта
@@ -30,13 +30,13 @@
 
 ## 3. Acceptance Criteria
 
-- [ ] Тренировка на GPT2 проходит до конца
-- [ ] LoRA обучает только adapter параметры
-- [ ] Чекпоинты сохраняются каждые N steps
-- [ ] Resume from checkpoint работает
-- [ ] WandB логирование работает (опционально)
-- [ ] CLI train команда работает
-- [ ] `pytest tests/unit/training/` проходит
+- [+] Тренировка на GPT2 проходит до конца
+- [+] LoRA обучает только adapter параметры
+- [+] Чекпоинты сохраняются каждые N steps
+- [+] Resume from checkpoint работает
+- [+] WandB логирование работает (опционально)
+- [+] CLI train команда работает
+- [+] `pytest tests/unit/training/` проходит
 
 ## 4. Этап 1. Training Configuration
 
@@ -243,14 +243,15 @@ def train_command(args):
 
 | # | Задача | Приоритет | Объём | Статус | Зависит от |
 |---|--------|:---------:|:-----:|:------:|:----------:|
-| 1.1 | Training Config | critical | M | ToDo | — |
-| 2.1 | LoRA Trainer | critical | L | ToDo | 1.1 |
-| 3.1 | Logging Callback | high | S | ToDo | 2.1 |
-| 3.2 | WandB Callback | medium | S | ToDo | 2.1 |
-| 4.1 | Train Command | high | M | ToDo | 1.1, 2.1, 3.1 |
+| 1.1 | Training Config | critical | M | Done | — |
+| 2.1 | LoRA Trainer | critical | L | Done | 1.1 |
+| 3.1 | Logging Callback | high | S | Done | 2.1 |
+| 3.2 | WandB Callback | medium | S | Done | 2.1 |
+| 4.1 | Train Command | high | M | Done | 1.1, 2.1, 3.1 |
 
 ## 10. История
 
-- **YYYY-MM-DD** — спринт открыт
+- **2026-05-01** — спринт открыт
+- **2026-05-01** — спринт закрыт
 
 > **Примечание:** Для работы требуется `pip install wandb` для W&B интеграции (опционально)

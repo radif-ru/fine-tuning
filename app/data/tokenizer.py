@@ -165,7 +165,7 @@ class TokenizerWrapper:
             except Exception as e:
                 logger.warning(f"Не удалось применить chat_template: {e}")
         
-        # Fallback: ручное форматирование
+        # Резервный вариант: ручное форматирование
         lines = []
         for msg in messages:
             role = msg.get("role", "")

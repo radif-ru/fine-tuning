@@ -1,4 +1,4 @@
-"""LoRA Trainer для обучения моделей.
+"""Тренер LoRA для обучения моделей.
 
 Обёртка над transformers.Trainer с поддержкой LoRA.
 """
@@ -83,7 +83,7 @@ class LoRATrainer:
                 evaluation_strategy=evaluation_strategy
             )
             
-            # Callbacks
+            # Колбэки
             callbacks = [
                 LoggingCallback(),
                 ProgressCallback(),
@@ -95,7 +95,7 @@ class LoRATrainer:
                 args=training_args,
                 train_dataset=self.train_dataset,
                 eval_dataset=self.eval_dataset,
-                tokenizer=self.tokenizer,
+                processing_class=self.tokenizer,
                 callbacks=callbacks,
             )
             
@@ -120,20 +120,20 @@ class LoRATrainer:
     
     def save_model(self, output_dir: str) -> None:
         """Сохранить модель.
-        
+
         Args:
             output_dir: Директория для сохранения
         """
         output_path = Path(output_dir)
         output_path.mkdir(parents=True, exist_ok=True)
-        
+
         if self._trainer:
             self._trainer.save_model(str(output_path))
         else:
             self.model.save_pretrained(str(output_path))
-        
+
         self.tokenizer.save_pretrained(str(output_path))
-        
+
         logger.info(f"Модель сохранена | path={output_dir}")
     
     def save_adapter(self, output_dir: str) -> None:

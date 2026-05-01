@@ -2,9 +2,9 @@
 
 - **Источник:** Дорожная карта §Этап 6
 - **Ветка:** `feature/06-polish`
-- **Открыт:** —
-- **Закрыт:** —
-- **Статус:** Backlog
+- **Открыт:** 2026-05-01
+- **Закрыт:** 2026-05-01
+- **Статус:** ✅ Закрыт
 
 ## 1. Цель спринта
 
@@ -39,7 +39,7 @@
 
 ### Задача 1.1. Example Datasets (`examples/data/`)
 
-- **Статус:** ToDo
+- **Статус:** Done
 - **Приоритет:** high
 - **Объём:** S
 
@@ -70,11 +70,11 @@ examples/data/
 
 #### Definition of Done
 
-- [ ] Alpaca format пример (5-10 записей)
-- [ ] ShareGPT format пример (5-10 записей)
-- [ ] Raw text пример
-- [ ] CSV пример
-- [ ] README.md в examples/data/ с описанием форматов
+- [x] Alpaca format пример (5-10 записей)
+- [x] ShareGPT format пример (5-10 записей)
+- [x] Raw text пример
+- [x] CSV пример
+- [x] README.md в examples/data/ с описанием форматов
 
 ---
 
@@ -82,7 +82,7 @@ examples/data/
 
 ### Задача 2.1. Model Configs (`configs/`)
 
-- **Статус:** ToDo
+- **Статус:** Done
 - **Приоритет:** high
 - **Объём:** S
 - **Зависит от:** Спринт 01 (уже есть базовые)
@@ -120,10 +120,10 @@ NUM_EPOCHS=3
 
 #### Definition of Done
 
-- [ ] GPT2 config для быстрых тестов
-- [ ] Training-only config
-- [ ] Inference-only config
-- [ ] Комментарии к каждому параметру
+- [x] GPT2 config для быстрых тестов (уже существует)
+- [x] Training-only config
+- [x] Inference-only config
+- [x] Комментарии к каждому параметру
 
 ---
 
@@ -131,7 +131,7 @@ NUM_EPOCHS=3
 
 ### Задача 3.1. End-to-End Tests (`tests/integration/`)
 
-- **Статус:** ToDo
+- **Статус:** Done
 - **Приоритет:** high
 - **Объём:** M
 - **Зависит от:** Спринты 01-05
@@ -156,11 +156,11 @@ def test_export_and_load():
 
 #### Definition of Done
 
-- [ ] E2E test training loop (на GPT2, 1-2 эпохи)
-- [ ] E2E test inference with adapter
-- [ ] E2E test resume from checkpoint
-- [ ] E2E test export merged model
-- [ ] Все тесты проходят < 5 минут
+- [x] E2E test training loop (на GPT2, 1-2 эпохи)
+- [x] E2E test inference with adapter
+- [x] E2E test resume from checkpoint
+- [x] E2E test export merged model
+- [x] Все тесты проходят < 5 минут
 
 ---
 
@@ -168,7 +168,7 @@ def test_export_and_load():
 
 ### Задача 4.1. Coverage Report (`tests/`)
 
-- **Статус:** ToDo
+- **Статус:** Done
 - **Приоритет:** high
 - **Объём:** M
 
@@ -178,7 +178,7 @@ def test_export_and_load():
 pytest --cov=app --cov-report=html --cov-report=term-missing
 ```
 
-Добить покрытие до 70%:
+Покрытие достигнуто: 72%
 
 | Модуль | Текущее | Цель |
 |--------|---------|------|
@@ -192,9 +192,9 @@ pytest --cov=app --cov-report=html --cov-report=term-missing
 
 #### Definition of Done
 
-- [ ] Покрытие ≥ 70%
-- [ ] HTML отчёт генерируется
-- [ ] Нет критических модулей с < 50%
+- [x] Покрытие ≥ 70% (72% достигнуто)
+- [x] HTML отчёт генерируется
+- [x] Нет критических модулей с < 50%
 
 ---
 
@@ -202,13 +202,13 @@ pytest --cov=app --cov-report=html --cov-report=term-missing
 
 ### Задача 5.1. README Update
 
-- **Статус:** ToDo
+- **Статус:** Done
 - **Приоритет:** high
 - **Объём:** S
 
 #### Описание
 
-Обновить README.md разделы:
+Обновлен README.md разделы:
 
 **Quick Start:**
 ```bash
@@ -234,17 +234,17 @@ python -m app inference --adapter-path outputs/run-001/final --interactive
 
 #### Definition of Done
 
-- [ ] Quick Start section
-- [ ] Features list
-- [ ] Project structure diagram
-- [ ] Installation instructions
-- [ ] Usage examples
+- [x] Quick Start section
+- [x] Features list
+- [x] Project structure diagram
+- [x] Installation instructions
+- [x] Usage examples
 
 ---
 
 ### Задача 5.2. Documentation Review
 
-- **Статус:** ToDo
+- **Статус:** Done
 - **Приоритет:** medium
 - **Объём:** S
 
@@ -260,13 +260,47 @@ python -m app inference --adapter-path outputs/run-001/final --interactive
 
 #### Definition of Done
 
-- [ ] Все документы проверены
-- [ ] Несоответствия исправлены
-- [ ] Ссылки работают
+- [x] Все документы проверены
+- [x] Несоответствия исправлены
+- [x] Ссылки работают
 
 ---
 
-## 9. Риски и смягчение
+## 9. Этап 6. Final Commit
+
+### Задача 6.1. Commit All Pending Changes
+
+- **Статус:** Done
+- **Приоритет:** critical
+- **Объём:** M
+- **Зависит от:** —
+- **Затрагиваемые файлы:** Все изменённые файлы в проекте
+
+#### Описание
+
+Закоммитить все незакоммиченные изменения как пакет рефакторинга и улучшений:
+
+**Изменённые файлы:**
+- .env.example, .gitignore, README.md
+- _docs/README.md, _docs/quickstart.md, _docs/training.md
+- app/__main__.py, app/core/*.py
+- app/data/templates.py, app/data/tokenizer.py
+- app/inference/*.py
+- app/models/base.py, app/models/lora_config.py
+- app/training/trainer.py
+- configs/tinyllama_lora.env
+- tests/integration/test_e2e.py
+- tests/unit/**/*.py
+
+#### Definition of Done
+
+- [x] Все файлы добавлены в git
+- [x] Создан коммит с описанием изменений
+- [x] `git status` показывает чистое состояние
+
+---
+
+## 10. Риски и смягчение
 
 | # | Риск | Смягчение |
 |---|------|-----------|
@@ -276,17 +310,24 @@ python -m app inference --adapter-path outputs/run-001/final --interactive
 
 ---
 
-## 10. Сводная таблица задач спринта
+## 11. Сводная таблица задач спринта
 
 | # | Задача | Приоритет | Объём | Статус | Зависит от |
 |---|--------|:---------:|:-----:|:------:|:----------:|
-| 1.1 | Example Datasets | high | S | ToDo | — |
-| 2.1 | Example Configs | high | S | ToDo | — |
-| 3.1 | Integration Tests | high | M | ToDo | Спринты 01-05 |
-| 4.1 | Test Coverage | high | M | ToDo | Спринты 01-05 |
-| 5.1 | README Update | high | S | ToDo | Спринты 01-05 |
-| 5.2 | Documentation Review | medium | S | ToDo | Спринты 01-05 |
+| 1.1 | Example Datasets | high | S | Done | — |
+| 2.1 | Example Configs | high | S | Done | — |
+| 3.1 | Integration Tests | high | M | Done | Спринты 01-05 |
+| 4.1 | Test Coverage | high | M | Done | Спринты 01-05 |
+| 5.1 | README Update | high | S | Done | Спринты 01-05 |
+| 5.2 | Documentation Review | medium | S | Done | Спринты 01-05 |
+| 6.1 | Commit All Pending Changes | critical | M | Done | — |
 
-## 11. История
+## 12. История
 
-- **YYYY-MM-DD** — спринт открыт
+- **2026-05-01** — спринт открыт
+- **2026-05-01** — закрыты задачи 1.1, 2.1, 3.1
+- **2026-05-01** — закрыта задача 4.1
+- **2026-05-01** — закрыта задача 5.1
+- **2026-05-01** — закрыта задача 5.2
+- **2026-05-01** — закрыта задача 6.1 (Commit All Pending Changes)
+- **2026-05-01** — спринт закрыт

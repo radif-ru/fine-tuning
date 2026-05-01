@@ -1,0 +1,8 @@
+text,category,source
+"LoRA enables efficient fine-tuning of large language models by introducing trainable low-rank matrices while keeping the original model frozen.",technical,docs
+"Python's list comprehensions provide a concise way to create lists based on existing iterables.",tutorial,guide
+"The attention mechanism in transformers allows the model to focus on different parts of the input when producing each part of the output.",technical,paper
+"Docker containers package applications with all their dependencies, ensuring consistency across different environments.",devops,tutorial
+"Reinforcement learning is a type of machine learning where an agent learns to make decisions by taking actions in an environment to maximize rewards.",conceptual,textbook
+"APIs (Application Programming Interfaces) allow different software systems to communicate and exchange data with each other.",general,article
+"Version control systems like Git help developers track changes to code and collaborate effectively on software projects.",devops,guide

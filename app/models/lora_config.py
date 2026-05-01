@@ -57,7 +57,7 @@ class LoRAConfig:
             r=settings.LORA_R,
             lora_alpha=settings.LORA_ALPHA,
             lora_dropout=settings.LORA_DROPOUT,
-            target_modules=settings.LORA_TARGET_MODULES,
+            target_modules=settings.lora_target_modules_list,
             bias=settings.LORA_BIAS,
             task_type=settings.LORA_TASK_TYPE,
         )

@@ -139,4 +139,7 @@ def is_mps_available() -> bool:
         return False
     if not hasattr(torch.backends, "mps"):
         return False
-    return torch.backends.mps.is_available()
+    try:
+        return torch.backends.mps.is_available()
+    except AttributeError:
+        return False

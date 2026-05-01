@@ -144,9 +144,9 @@ class TestIsMpsAvailable:
         """Проверка без torch."""
         assert is_mps_available() is False
     
-    @patch("app.utils.device.torch.backends.mps")
+    @patch("app.utils.device.torch.backends.mps.is_available")
     @patch("app.utils.device.TORCH_AVAILABLE", True)
-    def test_no_mps_attribute(self, mock_mps):
+    def test_no_mps_attribute(self, mock_is_available):
         """Проверка без атрибута mps."""
-        del mock_mps.is_available
+        mock_is_available.side_effect = AttributeError("module has no attribute 'is_available'")
         assert is_mps_available() is False
