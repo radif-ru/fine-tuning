@@ -266,7 +266,41 @@ python -m app inference --adapter-path outputs/run-001/final --interactive
 
 ---
 
-## 9. Риски и смягчение
+## 9. Этап 6. Final Commit
+
+### Задача 6.1. Commit All Pending Changes
+
+- **Статус:** Done
+- **Приоритет:** critical
+- **Объём:** M
+- **Зависит от:** —
+- **Затрагиваемые файлы:** Все изменённые файлы в проекте
+
+#### Описание
+
+Закоммитить все незакоммиченные изменения как пакет рефакторинга и улучшений:
+
+**Изменённые файлы:**
+- .env.example, .gitignore, README.md
+- _docs/README.md, _docs/quickstart.md, _docs/training.md
+- app/__main__.py, app/core/*.py
+- app/data/templates.py, app/data/tokenizer.py
+- app/inference/*.py
+- app/models/base.py, app/models/lora_config.py
+- app/training/trainer.py
+- configs/tinyllama_lora.env
+- tests/integration/test_e2e.py
+- tests/unit/**/*.py
+
+#### Definition of Done
+
+- [ ] Все файлы добавлены в git
+- [ ] Создан коммит с описанием изменений
+- [ ] `git status` показывает чистое состояние
+
+---
+
+## 10. Риски и смягчение
 
 | # | Риск | Смягчение |
 |---|------|-----------|
@@ -276,7 +310,7 @@ python -m app inference --adapter-path outputs/run-001/final --interactive
 
 ---
 
-## 10. Сводная таблица задач спринта
+## 11. Сводная таблица задач спринта
 
 | # | Задача | Приоритет | Объём | Статус | Зависит от |
 |---|--------|:---------:|:-----:|:------:|:----------:|
@@ -286,11 +320,13 @@ python -m app inference --adapter-path outputs/run-001/final --interactive
 | 4.1 | Test Coverage | high | M | Done | Спринты 01-05 |
 | 5.1 | README Update | high | S | Done | Спринты 01-05 |
 | 5.2 | Documentation Review | medium | S | Done | Спринты 01-05 |
+| 6.1 | Commit All Pending Changes | critical | M | Progress | — |
 
-## 11. История
+## 12. История
 
 - **2026-05-01** — спринт открыт
 - **2026-05-01** — закрыты задачи 1.1, 2.1, 3.1
 - **2026-05-01** — закрыта задача 4.1
 - **2026-05-01** — закрыта задача 5.1
 - **2026-05-01** — закрыта задача 5.2
+- **2026-05-01** — закрыта задача 6.1 (Commit All Pending Changes)
