@@ -10,6 +10,7 @@
 |---|----------|-------|--------|--------|--------|
 | 00 | Bootstrap | `main` | 2026-04-30 | 2026-04-30 | ✅ Закрыт |
 | 01 | Core Infrastructure | `feature/01-core-infrastructure` | 2026-05-01 | 2026-05-01 | ✅ Закрыт |
+| 02 | Model Management | `feature/02-model-management` | 2026-05-01 | — | 🏃 В Закрыт |
 
 ### Активные
 
@@ -21,7 +22,6 @@
 
 | # | Название | Ветка | Открыт | Закрыт | Статус |
 |---|----------|-------|--------|--------|--------|
-| 02 | Model Management | `feature/02-model-management` | — | — | 📋 Запланирован |
 | 03 | Data Pipeline | `feature/03-data-pipeline` | — | — | 📋 Запланирован |
 | 04 | Training | `feature/04-training` | — | — | 📋 Запланирован |
 | 05 | Inference | `feature/05-inference` | — | — | 📋 Запланирован |
