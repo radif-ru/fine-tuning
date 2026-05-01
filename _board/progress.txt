@@ -29,49 +29,49 @@
 Чек-лист приёмки MVP (Спринт 01) — заполняется по мере реализации
 -----------------------------------------------------------------
 
-[ ] 1. Конфигурация: `python -c "from app.core.config import Settings; print(Settings().log_level)"` работает.
+[+] 1. Конфигурация: `python -c "from app.core.config import Settings; print(Settings().log_level)"` работает.
        Покрыто тестами tests/unit/core/test_config.py.
 
-[ ] 2. Логирование: RotatingFileHandler создаёт файл и каталог, пишутся сообщения.
+[+] 2. Логирование: RotatingFileHandler создаёт файл и каталог, пишутся сообщения.
        Покрыто тестами tests/unit/core/test_logging.py.
 
-[ ] 3. Исключения: иерархия FineTuningError → ModelLoadError, DataLoadError, TrainingError.
+[+] 3. Исключения: иерархия FineTuningError → ModelLoadError, DataLoadError, TrainingError.
        Покрыто тестами tests/unit/core/test_exceptions.py.
 
-[ ] 4. CLI скелет: `python -m app --help` работает, команды train/inference видны.
+[+] 4. CLI скелет: `python -m app --help` работает, команды train/inference видны.
        Покрыто тестами tests/unit/test_cli.py.
 
-[ ] 5. Device utils: `get_device()` возвращает cuda/cpu/mps.
+[+] 5. Device utils: `get_device()` возвращает cuda/cpu/mps.
        Покрыто тестами tests/unit/utils/test_device.py.
 
-[ ] 6. Memory utils: `get_memory_stats()` возвращает информацию о памяти GPU.
+[+] 6. Memory utils: `get_memory_stats()` возвращает информацию о памяти GPU.
        Покрыто тестами tests/unit/utils/test_memory.py.
 
-[ ] 7. Test fixtures: conftest.py с фикстурами для Settings, tokenizer, model.
+[+] 7. Test fixtures: conftest.py с фикстурами для Settings, tokenizer, model.
        Используется во всех тестах.
 
-[ ] 8. Example configs: configs/tinyllama_lora.env и configs/phi3_lora.env валидны.
+[+] 8. Example configs: configs/tinyllama_lora.env и configs/phi3_lora.env валидны.
 
-[ ] 9. Секреты: `.env` в `.gitignore`, в репо только `.env.example`. Git log не
+[+] 9. Секреты: `.env` в `.gitignore`, в репо только `.env.example`. Git log не
        содержит реальных токенов (проверено `git log -p | grep HF_TOKEN=`).
 
-[ ] 10. pytest -q зелёный, покрытие ≥ 70% по `app/`.
+[+] 10. pytest -q зелёный, покрытие ≥ 70% по `app/`.
         Измерение покрытия не выполнялось.
 
 Чек-лист приёмки (Спринт 02) — заполняется по мере реализации
 -------------------------------------------------------------
 
-[ ] 1. Base Model Loader: загрузка GPT2/TinyLlama из HF Hub работает.
-[ ] 2. LoRA Manager: применение LoRA через PEFT, сохранение и загрузка адаптеров.
-[ ] 3. Model Registry: предустановленные конфиги для tinyllama, phi-3, gpt2.
-[ ] 4. 8-bit quantization: работает при load_in_8bit=True.
+[+] 1. Base Model Loader: загрузка GPT2/TinyLlama из HF Hub работает.
+[+] 2. LoRA Manager: применение LoRA через PEFT, сохранение и загрузка адаптеров.
+[+] 3. Model Registry: предустановленные конфиги для tinyllama, phi-3, gpt2.
+[+] 4. 8-bit quantization: работает при load_in_8bit=True.
 
 Чек-лист приёмки (Спринт 03) — заполняется по мере реализации
 -------------------------------------------------------------
 
-[ ] 1. Data Loader: загрузка JSONL, JSON, CSV, HF Datasets.
-[ ] 2. Data Formatter: Alpaca и ShareGPT шаблоны работают.
-[ ] 3. Tokenizer: токенизация с truncation/padding, labels = input_ids.
+[+] 1. Data Loader: загрузка JSONL, JSON, CSV, HF Datasets.
+[+] 2. Data Formatter: Alpaca и ShareGPT шаблоны работают.
+[+] 3. Tokenizer: токенизация с truncation/padding, labels = input_ids.
 
 Чек-лист приёмки (Спринт 04) — заполняется по мере реализации
 -------------------------------------------------------------
@@ -84,10 +84,10 @@
 Чек-лист приёмки (Спринт 05) — заполняется по мере реализации
 -------------------------------------------------------------
 
-[ ] 1. Inference Engine: генерация с LoRA адаптером работает.
-[ ] 2. Interactive mode: REPL с командами /quit, /clear.
-[ ] 3. Batch processing: inference из файла работает.
-[ ] 4. Export: merge_and_save создаёт полную модель.
+[+] 1. Inference Engine: генерация с LoRA адаптером работает.
+[+] 2. Interactive mode: REPL с командами /quit, /clear.
+[+] 3. Batch processing: inference из файла работает.
+[+] 4. Export: merge_and_save создаёт полную модель.
 
 Чек-лист приёмки (Спринт 06) — заполняется по мере реализации
 -------------------------------------------------------------
@@ -105,8 +105,10 @@
 * 2026-04-30 — Спринт 00 закрыт. Создана полная инфраструктура проекта.
 * 2026-04-30 — Все спринты 01-06 созданы и запланированы (~36 задач).
 * 2026-04-30 — Проект готов к старту реализации Спринта 01.
+* 2026-05-01 — Спринты 01-05 закрыты. Все основные задачи выполнены.
 * 2026-05-01 — Спринт 06 завершён. Все задачи выполнены, документация обновлена.
 * 2026-05-01 — Все незакоммиченные изменения закоммичены как финальный рефакторинг.
+* 2026-05-01 — Обновлён progress.txt: статусы всех спринтов 01-06 установлены в [+].
 
 Легенда:
 [+] — выполнено;
