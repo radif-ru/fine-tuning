@@ -12,12 +12,13 @@
 | 01 | Core Infrastructure | `feature/01-core-infrastructure` | 2026-05-01 | 2026-05-01 | ✅ Закрыт |
 | 02 | Model Management | `feature/02-model-management` | 2026-05-01 | 2026-05-01 | ✅ Закрыт |
 | 03 | Data Pipeline | `feature/03-data-pipeline` | 2026-05-01 | 2026-05-01 | ✅ Закрыт |
+| 04 | Training | `feature/04-training` | 2026-05-01 | 2026-05-01 | ✅ Закрыт |
 
 ### Активные
 
 | # | Название | Ветка | Открыт | Закрыт | Статус |
 |---|----------|-------|--------|--------|--------|
-| 04 | Training | `feature/04-training` | 2026-05-01 | — | 🏃 В работе |
+| — | — | — | — | — | — |
 
 ### Запланированные
 
