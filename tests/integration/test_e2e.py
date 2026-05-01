@@ -19,17 +19,19 @@ class TestFullTrainingLoop:
     """Тест полного цикла обучения."""
     
     @pytest.mark.slow
-    def test_config_loading(self):
+    def test_config_loading(self, monkeypatch):
         """Проверка загрузки конфигурации."""
         from app.core.config import Settings
         
-        # Создаём тестовый .env файл
-        settings = Settings(
-            BASE_MODEL_NAME="gpt2",
-            LORA_R=4,
-            LORA_ALPHA=8,
-            NUM_EPOCHS=1,
-        )
+        # Устанавливаем env vars
+        monkeypatch.setenv("BASE_MODEL_NAME", "gpt2")
+        monkeypatch.setenv("LORA_R", "4")
+        monkeypatch.setenv("LORA_ALPHA", "8")
+        monkeypatch.setenv("NUM_EPOCHS", "1")
+        monkeypatch.setenv("TRAIN_DATA_PATH", "./data/train.jsonl")
+        monkeypatch.setenv("OUTPUT_DIR", "./outputs")
+        
+        settings = Settings()
         
         assert settings.BASE_MODEL_NAME == "gpt2"
         assert settings.LORA_R == 4
@@ -234,12 +236,15 @@ class TestCLIIntegration:
     def test_cli_parser_creation(self):
         """Проверка создания парсера аргументов."""
         from app.__main__ import create_parser
+        import sys
         
         parser = create_parser()
         assert parser is not None
         
-        # Проверка что команды существуют
-        args = parser.parse_args(["--help"])
+        # Проверка что команды существуют (help вызывает SystemExit)
+        with pytest.raises(SystemExit) as exc_info:
+            parser.parse_args(["--help"])
+        assert exc_info.value.code == 0
     
     def test_inference_args_parsing(self):
         """Проверка парсинга аргументов inference."""

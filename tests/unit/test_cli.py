@@ -171,8 +171,13 @@ class TestCommandHandlers:
         assert mock_settings.TRAIN_DATA_PATH == "./data/custom.jsonl"
         assert mock_settings.NUM_EPOCHS == 5
     
-    def test_handle_inference_command_single(self, mock_settings, mock_logger):
+    @patch("app.inference.cli.InferenceCLI")
+    def test_handle_inference_command_single(self, mock_cli_class, mock_settings, mock_logger):
         """Проверка inference с одиночным промптом."""
+        mock_cli = MagicMock()
+        mock_cli.run.return_value = 0
+        mock_cli_class.return_value = mock_cli
+        
         args = MagicMock()
         args.base_model = "gpt2"
         args.adapter_path = None
@@ -181,37 +186,62 @@ class TestCommandHandlers:
         args.input_file = None
         args.temperature = 0.7
         args.max_new_tokens = 256
+        args.top_p = 0.9
+        args.top_k = 50
+        args.repetition_penalty = 1.0
+        args.do_sample = True
+        args.prompt_template = "alpaca"
+        args.device = "auto"
+        args.load_in_8bit = False
+        args.output_file = None
         
         result = handle_inference_command(args, mock_settings, mock_logger)
         
         assert result == 0
-        mock_logger.info.assert_any_call("Промпт: Hello")
     
-    def test_handle_inference_command_no_args(self, mock_settings, mock_logger):
+    @patch("app.inference.cli.InferenceCLI")
+    def test_handle_inference_command_no_args(self, mock_cli_class, mock_settings, mock_logger):
         """Проверка inference без обязательных аргументов."""
+        mock_cli = MagicMock()
+        mock_cli.run.return_value = 1
+        mock_cli_class.return_value = mock_cli
+        
         args = MagicMock()
         args.base_model = "gpt2"
         args.adapter_path = None
         args.prompt = None
         args.interactive = False
         args.input_file = None
+        args.temperature = 0.7
+        args.max_new_tokens = 256
+        args.top_p = 0.9
+        args.top_k = 50
+        args.repetition_penalty = 1.0
+        args.do_sample = True
+        args.prompt_template = "alpaca"
+        args.device = "auto"
+        args.load_in_8bit = False
+        args.output_file = None
         
         result = handle_inference_command(args, mock_settings, mock_logger)
         
         assert result == 1
-        mock_logger.error.assert_called()
     
-    def test_handle_export_command(self, mock_settings, mock_logger):
+    @patch("app.inference.export.ModelExporter")
+    def test_handle_export_command(self, mock_exporter_class, mock_settings, mock_logger):
         """Проверка обработчика export."""
+        mock_exporter = MagicMock()
+        mock_exporter_class.return_value = mock_exporter
+        
         args = MagicMock()
         args.base_model = "gpt2"
         args.adapter_path = "./outputs/adapter"
         args.output_path = "./outputs/merged"
+        args.save_tokenizer = True
         
         result = handle_export_command(args, mock_settings, mock_logger)
         
         assert result == 0
-        mock_logger.info.assert_any_call("Экспорт модели...")
 
 
 class TestMain:

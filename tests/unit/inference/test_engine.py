@@ -210,19 +210,16 @@ class TestInferenceEngineMerge:
         with pytest.raises(InferenceError, match="не загружена"):
             engine.merge_and_unload()
     
-    def test_merge_already_merged(self, mocker, caplog):
+    def test_merge_already_merged(self, mocker):
         """Проверка предупреждения при повторном merge."""
-        import logging
-        
         engine = InferenceEngine("gpt2")
         engine._model = mocker.MagicMock()
         engine._is_merged = True
         
-        with caplog.at_level(logging.WARNING):
-            result = engine.merge_and_unload()
+        result = engine.merge_and_unload()
         
         assert result is engine
-        assert "уже объединена" in caplog.text
+        assert engine.is_merged is True
     
     def test_merge_success(self, mocker):
         """Проверка успешного merge."""

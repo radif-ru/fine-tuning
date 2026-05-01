@@ -99,7 +99,7 @@ class TestFormatFunctions:
         """Проверка форматирования Alpaca с input."""
         result = format_alpaca(
             instruction="Напиши привет",
-            input="на русском",
+            input_text="на русском",
             output="Привет!"
         )
         
