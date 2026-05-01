@@ -98,40 +98,49 @@ class LoRATrainingConfig:
         evaluation_strategy: str = "no"
     ) -> TrainingArguments:
         """Конвертировать в HF TrainingArguments.
-        
+
         Args:
             output_dir: Директория для вывода
             evaluation_strategy: Стратегия evaluation
-        
+
         Returns:
             TrainingArguments
         """
-        return TrainingArguments(
-            output_dir=output_dir,
-            num_train_epochs=self.num_train_epochs,
-            per_device_train_batch_size=self.per_device_train_batch_size,
-            per_device_eval_batch_size=self.per_device_eval_batch_size,
-            learning_rate=self.learning_rate,
-            warmup_steps=self.warmup_steps,
-            max_steps=self.max_steps if self.max_steps > 0 else None,
-            optim=self.optim,
-            weight_decay=self.weight_decay,
-            max_grad_norm=self.max_grad_norm,
-            lr_scheduler_type=self.lr_scheduler_type,
-            gradient_accumulation_steps=self.gradient_accumulation_steps,
-            fp16=self.fp16,
-            bf16=self.bf16,
-            logging_steps=self.logging_steps,
-            save_steps=self.save_steps,
-            eval_steps=self.eval_steps if evaluation_strategy != "no" else None,
-            evaluation_strategy=evaluation_strategy,
-            save_total_limit=self.save_total_limit,
-            logging_first_step=True,
-            logging_nan_inf_filter=True,
-            load_best_model_at_end=False,
-            report_to="none",  # Мы управляем логированием через callbacks
-            remove_unused_columns=False,
-        )
+        # В новых версиях transformers параметр называется eval_strategy
+        kwargs = {
+            "output_dir": output_dir,
+            "num_train_epochs": self.num_train_epochs,
+            "per_device_train_batch_size": self.per_device_train_batch_size,
+            "per_device_eval_batch_size": self.per_device_eval_batch_size,
+            "learning_rate": self.learning_rate,
+            "warmup_steps": self.warmup_steps,
+            "optim": self.optim,
+            "weight_decay": self.weight_decay,
+            "max_grad_norm": self.max_grad_norm,
+            "lr_scheduler_type": self.lr_scheduler_type,
+            "gradient_accumulation_steps": self.gradient_accumulation_steps,
+            "fp16": self.fp16,
+            "bf16": self.bf16,
+            "logging_steps": self.logging_steps,
+            "save_steps": self.save_steps,
+            "eval_steps": self.eval_steps if evaluation_strategy != "no" else None,
+            "save_total_limit": self.save_total_limit,
+            "logging_first_step": True,
+            "logging_nan_inf_filter": True,
+            "load_best_model_at_end": False,
+            "report_to": "none",  # Мы управляем логированием через callbacks
+            "remove_unused_columns": False,
+        }
+
+        # max_steps только если > 0
+        if self.max_steps > 0:
+            kwargs["max_steps"] = self.max_steps
+
+        # Пробуем eval_strategy (новые версии) или evaluation_strategy (старые версии)
+        try:
+            return TrainingArguments(eval_strategy=evaluation_strategy, **kwargs)
+        except TypeError:
+            return TrainingArguments(evaluation_strategy=evaluation_strategy, **kwargs)
     
     def to_dict(self) -> dict:
         """Конвертировать в словарь.

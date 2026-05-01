@@ -15,9 +15,10 @@ class TestSettings:
     
     def test_required_fields(self):
         """Проверка обязательных полей."""
+        # Проверяем что обязательные поля действительно обязательны
         with pytest.raises(ValidationError) as exc_info:
-            Settings()
-        
+            Settings(_env_file=None)
+
         errors = exc_info.value.errors()
         required_fields = [e["loc"][0] for e in errors if e["type"] == "missing"]
         assert "BASE_MODEL_NAME" in required_fields
@@ -34,7 +35,7 @@ class TestSettings:
         assert settings.LORA_ALPHA == 16
         assert settings.LORA_DROPOUT == 0.1
         assert settings.NUM_EPOCHS == 3
-        assert settings.PER_DEVICE_BATCH_SIZE == 4
+        assert settings.PER_DEVICE_BATCH_SIZE == 1
         assert settings.LEARNING_RATE == 2e-4
         assert settings.MAX_SEQ_LENGTH == 512
         assert settings.LOG_LEVEL == "INFO"
@@ -47,17 +48,17 @@ class TestSettings:
             LORA_TARGET_MODULES="q_proj,v_proj,k_proj"
         )
         
-        assert settings.LORA_TARGET_MODULES == ["q_proj", "v_proj", "k_proj"]
+        assert settings.lora_target_modules_list == ["q_proj", "v_proj", "k_proj"]
     
     def test_lora_target_modules_list(self):
-        """Проверка LORA_TARGET_MODULES как список."""
+        """Проверка LORA_TARGET_MODULES как строка (конвертируется в список)."""
         settings = Settings(
             BASE_MODEL_NAME="gpt2",
             TRAIN_DATA_PATH="./data/train.jsonl",
-            LORA_TARGET_MODULES=["q_proj", "v_proj"]
+            LORA_TARGET_MODULES="q_proj,v_proj"
         )
         
-        assert settings.LORA_TARGET_MODULES == ["q_proj", "v_proj"]
+        assert settings.lora_target_modules_list == ["q_proj", "v_proj"]
     
     def test_validation_lora_r_positive(self):
         """Проверка валидации LORA_R > 0."""

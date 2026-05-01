@@ -21,21 +21,21 @@ class Settings(BaseSettings):
     )
     
     # =============================================================================
-    # Model Configuration
+    # Конфигурация модели
     # =============================================================================
     BASE_MODEL_NAME: str = Field(..., description="Имя базовой модели из HF Hub или локальный путь")
     HF_CACHE_DIR: Optional[str] = Field(None, description="Директория кэша HuggingFace")
     TRUST_REMOTE_CODE: bool = Field(False, description="Доверять remote code при загрузке")
     
     # =============================================================================
-    # LoRA Configuration
+    # Конфигурация LoRA
     # =============================================================================
     LORA_R: int = Field(default=8, ge=1, description="LoRA rank")
     LORA_ALPHA: int = Field(default=16, ge=1, description="LoRA alpha scaling")
     LORA_DROPOUT: float = Field(default=0.1, ge=0.0, le=1.0, description="LoRA dropout rate")
-    LORA_TARGET_MODULES: List[str] = Field(
-        default=["q_proj", "k_proj", "v_proj", "o_proj"],
-        description="Модули для применения LoRA"
+    LORA_TARGET_MODULES: str = Field(
+        default="q_proj,k_proj,v_proj,o_proj",
+        description="Модули для применения LoRA (через запятую)"
     )
     LORA_BIAS: str = Field(
         default="none",
@@ -45,7 +45,7 @@ class Settings(BaseSettings):
     LORA_TASK_TYPE: str = Field(default="CAUSAL_LM", description="Тип задачи для LoRA")
     
     # =============================================================================
-    # Training Configuration
+    # Конфигурация обучения
     # =============================================================================
     OUTPUT_DIR: str = Field(default="./outputs", description="Директория для результатов")
     CHECKPOINT_DIR: str = Field(default="./checkpoints", description="Директория для чекпоинтов")
@@ -68,7 +68,7 @@ class Settings(BaseSettings):
     SAVE_TOTAL_LIMIT: int = Field(default=3, ge=1, description="Максимум сохранённых чекпоинтов")
     
     # =============================================================================
-    # Data Configuration
+    # Конфигурация данных
     # =============================================================================
     TRAIN_DATA_PATH: str = Field(..., description="Путь к тренировочным данным")
     VALIDATION_DATA_PATH: Optional[str] = Field(None, description="Путь к валидационным данным")
@@ -78,7 +78,7 @@ class Settings(BaseSettings):
     MAX_SEQ_LENGTH: int = Field(default=512, ge=1, description="Максимальная длина последовательности")
     
     # =============================================================================
-    # Optimization
+    # Оптимизация
     # =============================================================================
     USE_8BIT_ADAM: bool = Field(default=False, description="Использовать 8-bit AdamW")
     FP16: bool = Field(default=True, description="Mixed precision FP16")
@@ -87,7 +87,7 @@ class Settings(BaseSettings):
     MAX_MEMORY_MB: Optional[int] = Field(None, ge=1, description="Максимальная память GPU (MB)")
     
     # =============================================================================
-    # Logging and Monitoring
+    # Логирование и мониторинг
     # =============================================================================
     LOG_LEVEL: str = Field(
         default="INFO",
@@ -100,12 +100,12 @@ class Settings(BaseSettings):
     TENSORBOARD_DIR: Optional[str] = Field(None, description="Директория TensorBoard")
     
     # =============================================================================
-    # Inference Configuration
+    # Конфигурация инференса
     # =============================================================================
     INFERENCE_MODEL_PATH: Optional[str] = Field(None, description="Путь к дообученной модели")
     INFERENCE_DEVICE: str = Field(
         default="auto",
-        pattern="^(auto|cpu|cuda|cuda:\d+)$",
+        pattern=r"^(auto|cpu|cuda|cuda:\d+)$",
         description="Устройство для инференса"
     )
     MAX_NEW_TOKENS: int = Field(default=256, ge=1, description="Максимум новых токенов")
@@ -115,7 +115,7 @@ class Settings(BaseSettings):
     REPETITION_PENALTY: float = Field(default=1.0, ge=1.0, description="Штраф за повторения")
     
     # =============================================================================
-    # Advanced Configuration
+    # Расширенная конфигурация
     # =============================================================================
     RANDOM_SEED: int = Field(default=42, description="Seed для воспроизводимости")
     DATALOADER_NUM_WORKERS: int = Field(default=4, ge=0, description="Workers для DataLoader")
@@ -123,13 +123,10 @@ class Settings(BaseSettings):
     GROUP_BY_LENGTH: bool = Field(default=True, description="Группировать по длине")
     USE_PACKING: bool = Field(default=False, description="Использовать packing")
     
-    @field_validator("LORA_TARGET_MODULES", mode="before")
-    @classmethod
-    def parse_lora_target_modules(cls, v):
-        """Парсит строку с модулями через запятую в список."""
-        if isinstance(v, str):
-            return [m.strip() for m in v.split(",") if m.strip()]
-        return v
+    @property
+    def lora_target_modules_list(self) -> List[str]:
+        """Возвращает LORA_TARGET_MODULES как список."""
+        return [m.strip() for m in self.LORA_TARGET_MODULES.split(",") if m.strip()]
     
     @field_validator("TRAIN_DATA_PATH", "VALIDATION_DATA_PATH")
     @classmethod

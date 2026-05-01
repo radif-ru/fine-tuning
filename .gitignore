@@ -63,6 +63,7 @@ outputs/*
 *.ckpt
 *.h5
 *.onnx
+merged-model/
 
 # Test and cache
 .pytest_cache/
@@ -81,3 +82,21 @@ htmlcov/
 tmp/
 temp/
 *.tmp
+
+# Additional ML/AI specific
+wandb/
+lightning_logs/
+runs/
+.hypothesis/
+.cache/
+
+# Generated data files
+*.tsv
+*.jsonl
+!examples/data/*.jsonl
+
+# Mock/test directories
+MagicMock/
+
+# Backup directories
+~/

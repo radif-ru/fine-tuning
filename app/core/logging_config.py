@@ -34,17 +34,17 @@ def setup_logging(
     # Удаляем существующие обработчики (для повторной инициализации)
     logger.handlers.clear()
     
-    # Formatter для всех обработчиков
+    # Форматтер для всех обработчиков
     formatter = logging.Formatter(format_string, datefmt="%Y-%m-%d %H:%M:%S")
     
-    # Console handler
+    # Обработчик консоли
     console_handler = logging.StreamHandler(sys.stdout)
     console_handler.setLevel(getattr(logging, level.upper()))
     console_handler.setFormatter(formatter)
     console_handler.set_name("console")
     logger.addHandler(console_handler)
     
-    # File handler (если указан)
+    # Файловый обработчик (если указан)
     if log_file:
         log_path = Path(log_file)
         log_path.parent.mkdir(parents=True, exist_ok=True)

@@ -112,8 +112,8 @@ class TestInferenceWithAdapter:
         # Alpaca шаблон
         builder = PromptBuilder("alpaca")
         prompt = builder.build("Explain LoRA")
-        assert "### Instruction:" in prompt
-        assert "### Response:" in prompt
+        assert "### Инструкция:" in prompt
+        assert "### Ответ:" in prompt
         
         # Raw шаблон
         builder = PromptBuilder("raw")

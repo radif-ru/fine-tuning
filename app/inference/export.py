@@ -78,7 +78,7 @@ class ModelExporter:
             
             logger.info(f"LoRA адаптер загружен | path={adapter_path}")
             
-            # Merge адаптера
+            # Объединение адаптера
             merged_model = self._lora_manager.merge_and_unload(model)
             
             logger.info("LoRA адаптер объединён с базовой моделью")

@@ -6,6 +6,7 @@
 
 ### Основные документы
 
+- 🚀 [`quickstart.md`](./quickstart.md) — быстрый старт с пошаговым гайдом
 - 📋 [`requirements.md`](./requirements.md) — функциональные и нефункциональные требования, ограничения
 - 🏗️ [`architecture.md`](./architecture.md) — архитектура системы, компоненты, потоки данных
 - ⚙️ [`configuration.md`](./configuration.md) — полное описание конфигурации через `.env`
