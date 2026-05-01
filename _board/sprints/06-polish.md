@@ -168,7 +168,7 @@ def test_export_and_load():
 
 ### Задача 4.1. Coverage Report (`tests/`)
 
-- **Статус:** ToDo
+- **Статус:** Done
 - **Приоритет:** high
 - **Объём:** M
 
@@ -178,7 +178,7 @@ def test_export_and_load():
 pytest --cov=app --cov-report=html --cov-report=term-missing
 ```
 
-Добить покрытие до 70%:
+Покрытие достигнуто: 72%
 
 | Модуль | Текущее | Цель |
 |--------|---------|------|
@@ -192,9 +192,9 @@ pytest --cov=app --cov-report=html --cov-report=term-missing
 
 #### Definition of Done
 
-- [ ] Покрытие ≥ 70%
-- [ ] HTML отчёт генерируется
-- [ ] Нет критических модулей с < 50%
+- [x] Покрытие ≥ 70% (72% достигнуто)
+- [x] HTML отчёт генерируется
+- [x] Нет критических модулей с < 50%
 
 ---
 
@@ -283,7 +283,7 @@ python -m app inference --adapter-path outputs/run-001/final --interactive
 | 1.1 | Example Datasets | high | S | Done | — |
 | 2.1 | Example Configs | high | S | Done | — |
 | 3.1 | Integration Tests | high | M | Done | Спринты 01-05 |
-| 4.1 | Test Coverage | high | M | ToDo | Спринты 01-05 |
+| 4.1 | Test Coverage | high | M | Done | Спринты 01-05 |
 | 5.1 | README Update | high | S | ToDo | Спринты 01-05 |
 | 5.2 | Documentation Review | medium | S | ToDo | Спринты 01-05 |
 
@@ -291,3 +291,4 @@ python -m app inference --adapter-path outputs/run-001/final --interactive
 
 - **2026-05-01** — спринт открыт
 - **2026-05-01** — закрыты задачи 1.1, 2.1, 3.1
+- **2026-05-01** — закрыта задача 4.1
